@@ -10,7 +10,7 @@ import {
 export function CloudSelector({clouds, cloud, setCloud}){     //:Route.ComponentProps) {
     // console.log(`${JSON.stringify(clouds[0])}`);
     return (
-        <div className="p-2 border border-purple-600 w-1/5">
+        <div className="p-2 border-4 border-purple-600 grow">
             <form>
                 <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
                 <select name="cloudSelect" id="cloudSelect"
