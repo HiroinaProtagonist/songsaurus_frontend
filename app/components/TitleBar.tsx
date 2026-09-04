@@ -3,7 +3,7 @@ import {Link} from "react-router";
 
 export function TitleBar() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} className="">
             <Stack direction="row" className="justify-between mb-4">
                 {/*<span className="text-xl">SPOTIWORDS</span>*/}
                 <span>

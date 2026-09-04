@@ -6,11 +6,12 @@ import {CloudUI} from "~/components/CloudUI";
 import {ResultsPane} from "~/components/ResultsPane";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {useState} from "react";
-import {Search} from "~/layouts/search";
+import {Search} from "~/layouts/Search";
+import {Results} from "~/components/Results";
 
 export function meta({}: Route.MetaArgs) {
     return [
-        {title: "spotiwords"},
+        {title: "songsaurus"},
         {name: "description", content: "Search Spotify by word association"},
     ];
 }
@@ -26,39 +27,33 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
     const { clouds } = loaderData;
 
     const[cloud, setCloud] = useState<string>();
+    // const[explicit, setExplicit] = useState<boolean>(false);
+
+    const[trackResults, setTrackResults] = useState<[]>();
 
     return (
         <Box sx={{flexGrow: 1}} className="justify-between">
             <TitleBar/>
-            <Stack direction="column" className="grow border-6 border-green-400">
-
-
+            <Stack direction="column" className="grow border-0 border-pink-400">
                 <Grid container spacing={0}>
                     <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
-                        <div className="text-center border-4 border-black">
-                            <span className="text-xl">Spotiwords</span>, driven by Spotify
+                        <div className="text-center border-b-4 border-black">
+                            <span className="text-xl">Songsaurus</span>, powered by Spotify
                         </div>
                     </Grid>
-                    <Grid size={{xs: 12, sm: 12, md: 4, lg: 4, xl: 4}}>
-                        <div className="border-4 border-black">
-                            <Search clouds={clouds} cloud={cloud} setCloud={setCloud} />
+                    <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
+                        <div className="border-b-0 border-black">
+                            <Search clouds={clouds}
+                                    cloud={cloud} setCloud={setCloud}/>
                         </div>
                     </Grid>
-                    <Grid size={{xs: 12, sm: 12, md: 8, lg: 8, xl: 8}}>
-                        <div className="border-4 border-black">
-                            <CloudUI cloud={cloud}/>
-                        </div>
-                    </Grid>
-
+                    {/*<Grid size={{xs: 12, sm: 12, md: 8, lg: 8, xl: 8}}>*/}
+                    {/*    <div className="border-b-0 border-black">*/}
+                    {/*        /!*<CloudUI cloud={cloud}/>*!/*/}
+                    {/*        /!*<ResultsStack results={trackResults}/>*!/*/}
+                    {/*    </div>*/}
+                    {/*</Grid>*/}
                 </Grid>
-
-                <Stack direction="row" className="h-3/4 grow border-4 border-blue-400">
-                    <Search clouds={clouds} cloud={cloud} setCloud={setCloud} />
-                    <CloudUI cloud={cloud}/>
-                </Stack>
-
-                {/*{res.map((r, i) => <ResultsPane data={r}/>)}*/}
-
             </Stack>
         </Box>
     )

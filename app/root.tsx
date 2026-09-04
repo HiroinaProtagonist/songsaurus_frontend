@@ -34,7 +34,7 @@ export function Layout({children}: { children: React.ReactNode }) {
             <Meta/>
             <Links/>
         </head>
-        <body className="flex flex-col justify-between h-screen border-y-4 border-thick border-blue-600 mx-16 mb-4">
+        <body className="flex flex-col justify-between h-screen border-y-0 border-thick border-blue-600 mx-16 mb-4">
         {children}
         <FooterBar/>
         <ScrollRestoration/>

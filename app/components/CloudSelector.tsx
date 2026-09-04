@@ -1,36 +1,92 @@
-import {Form} from "react-router";
-import {Select} from "@mui/material";
 import {
     type CloudRecord,
     type ElementType,
     type reactWordCloud,
     stringToWordCloudArray
 } from "~/data/cloud_data";
+import {MdDelete, MdEdit} from "react-icons/md";
+import {useEffect, useRef, useState} from "react";
+import {sample} from "~/data/sample_tracks";
 
-export function CloudSelector({clouds, cloud, setCloud}){     //:Route.ComponentProps) {
-    // console.log(`${JSON.stringify(clouds[0])}`);
+export function CloudSelector({loaded, setLoaded,
+                               clouds,
+                               cloud, setCloud,
+                               explicit, setExplicit,
+                               results, setResults
+                              }:any){
+
+    const explicitCheckRef = useRef(null);
+
+
+    // console.log(`Explicit initial: ${explicit}`);
+
+    function loadSearchResults(explicit:boolean, cloud:string) {
+        console.log(`Explicit: ${explicit}; Cloud: ${cloud}`)
+        setResults(sample);
+        setLoaded(true);
+    }
+
     return (
-        <div className="p-2 border-4 border-purple-600 grow">
+        <div className="p-2 border-0 border-purple-600">
             <form>
-                <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
-                <select name="cloudSelect" id="cloudSelect"
-                    className="ml-2 pl-2 border border-black"
-                    onChange={e => {
-                        setCloud(stringToWordCloudArray(e.target.value));
-                    }}
-                >
-                    <option value='' key='0'>Choose cloud</option>
-                    {clouds.map((cloud:CloudRecord) =>
-                        <option value={cloud.elements} key={cloud.id} >{cloud.title}</option>
-                    )}
-                </select>
-                {/*<button className="ml-2 px-2 border border-black" onClick={e => {*/}
-                {/*    e.preventDefault();*/}
-                {/*    // setCloud(stringToWordCloudArray(cloud));*/}
-                {/*    console.log('cloud' + stringToWordCloudArray(cloud));*/}
-                {/*}}>Select</button>*/}
-            </form>
+                <span className="border-0">
+                    <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
+                    <select name="cloudSelect" id="cloudSelect"
+                        className="ml-2 px-1 border border-black"
+                        onChange={e => {
+                            setCloud(stringToWordCloudArray(e.target.value));
+                        }}
+                    >
+                        <option value='' key='0'>Choose cloud</option>
+                        {clouds.map((cloud:CloudRecord) =>
+                            <option value={cloud.elements} key={cloud.id} >{cloud.title}</option>
+                        )}
+                    </select>
 
+                    <span className="mt-1 pt-1 align-text-top text-xl">
+                        <button className="ml-2 font-bold"
+                            onClick={e => {
+                                e.preventDefault();
+                                console.log(`cloud edit: ${JSON.stringify(cloud)}`);
+                                // navigate
+                            }}
+                        >
+                            <MdEdit/>
+                        </button>
+                    </span>
+
+                    <span className="mt-1 pt-1 align-text-top text-xl">
+                        <button className="ml-2 font-bold"
+                            onClick={e => {
+                                e.preventDefault();
+                                console.log(`cloud del: `)
+                                console.log(cloud);
+                                // navigate
+                            }}
+                        >
+                            <MdDelete/>
+                        </button>
+                    </span>
+                </span>
+
+                <div className="">
+                    <label className="ml-2 pl-2">Include explicit songs</label>
+                    <input className="ml-2 pl-2" ref={explicitCheckRef} type="checkbox" id="explicit"
+                           name="explicit" defaultChecked={explicit}
+                           onChange={e => {
+                               e.stopPropagation();
+                               setExplicit(!explicit);
+                               // console.log(`Explicit: ${explicit}`);
+                           }}
+                    />
+                </div>
+
+                <button className="px-1 mt-2 ml-28 border border-black w-fit"
+                    onClick={e => {
+                        e.preventDefault();
+                        loadSearchResults(explicit, cloud);
+                }}>Get songs</button>
+            </form>
         </div>
     );
 }

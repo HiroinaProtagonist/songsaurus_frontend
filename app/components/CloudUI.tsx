@@ -1,6 +1,6 @@
 import ReactWordcloud from "@cp949/react-wordcloud";
 
-export function CloudUI({cloud}) {
+export function CloudUI({cloud}: any) {
     return (
         <div className="pl-2 border-4 border-pink-600" style={{ height: '300px' }}>
                 {cloud && <ReactWordcloud
