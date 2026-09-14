@@ -1,12 +1,16 @@
 import {
     type CloudRecord,
     type ElementType,
-    type reactWordCloud,
+    type reactWordCloud, stringToStringArray,
     stringToWordCloudArray
 } from "~/data/cloud_data";
 import {MdDelete, MdEdit} from "react-icons/md";
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import {sample} from "~/data/sample_tracks";
+import axios from "axios";
+import type {Game} from "~/model/game";
+import type {Tracks} from "~/model/tracks";
+import {ResultToTracks} from "~/data/ItemToTrack";
 
 export function CloudSelector({loaded, setLoaded,
                                clouds,
@@ -16,15 +20,33 @@ export function CloudSelector({loaded, setLoaded,
                               }:any){
 
     const explicitCheckRef = useRef(null);
-
+    const [error, setError] = useState<string>();
+    const LIMIT:string = "10";
 
     // console.log(`Explicit initial: ${explicit}`);
 
-    function loadSearchResults(explicit:boolean, cloud:string) {
+    function getSampleTracks(explicit:boolean, cloud:string) {
         console.log(`Explicit: ${explicit}; Cloud: ${cloud}`)
         setResults(sample);
         setLoaded(true);
     }
+
+    const getTracks = async (explicit:boolean, limit:string, cloud:string[]) => {
+        console.log(`Searching for tracks for cloud: ${JSON.stringify(cloud)}`);
+        axios
+            .get<Tracks[]>(`/songsaurus/multi/${limit}/${cloud}`)
+            // .get<Game[]>(`/games/${cloud}/${limit}`)
+            .then((res) => {
+                setResults(res.data);
+                setLoaded(true);
+                setError("");
+                // console.log(`Results from api: ${results}`);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoaded(true);
+            });
+    };
 
     return (
         <div className="p-2 border-0 border-purple-600">
@@ -34,7 +56,8 @@ export function CloudSelector({loaded, setLoaded,
                     <select name="cloudSelect" id="cloudSelect"
                         className="ml-2 px-1 border border-black"
                         onChange={e => {
-                            setCloud(stringToWordCloudArray(e.target.value));
+                            setCloud(stringToStringArray(e.target.value));
+                            // setCloud(e.target.value);
                         }}
                     >
                         <option value='' key='0'>Choose cloud</option>
@@ -84,7 +107,8 @@ export function CloudSelector({loaded, setLoaded,
                 <button className="px-1 mt-2 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        loadSearchResults(explicit, cloud);
+                        getSampleTracks(explicit, cloud);
+                        // getTracks(explicit, LIMIT, cloud);
                 }}>Get songs</button>
             </form>
         </div>

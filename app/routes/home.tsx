@@ -1,13 +1,9 @@
 import type {Route} from "./+types/home";
 import {TitleBar} from "~/components/TitleBar";
 import {Box, Grid, Stack} from "@mui/material";
-import {CloudSelector} from "~/components/CloudSelector";
-import {CloudUI} from "~/components/CloudUI";
-import {ResultsPane} from "~/components/ResultsPane";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {useState} from "react";
 import {Search} from "~/layouts/Search";
-import {Results} from "~/components/Results";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -27,8 +23,6 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
     const { clouds } = loaderData;
 
     const[cloud, setCloud] = useState<string>();
-    // const[explicit, setExplicit] = useState<boolean>(false);
-
     const[trackResults, setTrackResults] = useState<[]>();
 
     return (

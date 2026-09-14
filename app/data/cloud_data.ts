@@ -1,7 +1,6 @@
 
 import { matchSorter } from "match-sorter";
 
-// @ts-expect-error
 import sortBy from "sort-by";
 
 import invariant from "tiny-invariant";
@@ -114,6 +113,10 @@ export async function deleteCloud(id: string) {
 
 [
     {
+        title:'plus',
+        elements:'joyful:54,happy:75',
+    },
+    {
         title:'weather',
         elements:'snow:54,rain:75,sun:600,fog:400,windy:10,hailstones:4000',
     },
@@ -180,6 +183,26 @@ export function stringToWordCloudArray(elementsString:string) {
 
     return results;
 }
+
+export function stringToStringArray(elementsString:string) {
+    elementsString = elementsString.substring(0, elementsString.length-1);
+    console.log('1' + elementsString);
+
+    let elements = elementsString.split(",");
+
+    let words:String[] = [];
+    for (const e of elements) {
+        let elem = {
+            word: e.split(":")[0], freq: e.split(":")[1]
+        };
+
+        words.push(elem.word);
+    }
+
+    return words;
+}
+
+
 
 // //multiply all values by the same amount so that the smallest value has 4 figures
 // export function multiplier(cloudArray:reactWordCloud[]) {

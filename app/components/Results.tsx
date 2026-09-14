@@ -5,7 +5,9 @@ import {HeaderRow} from "~/components/HeaderRow";
 //results = {tracks=tracks, word=word}[]
 export function Results({results}) {
 
-    console.log(`${JSON.stringify(results[0].tracks)}`);
+    // if(results !== undefined) {
+    //     console.log(`Results received from backend: ${JSON.stringify(results)}`);
+    // }
 
     return (
         <Box sx={{flexGrow: 1}}
@@ -15,12 +17,18 @@ export function Results({results}) {
                   className="pl-2"
             >
 
-                {results.map((r, i: number) =>
+                {results !== undefined &&
+                    results.map((r, i: number) =>
                     <>
-                        <HeaderRow word={r.word} key={i}/>
-                        <SongListRow tracks={r.tracks} key={i*1000}/>
+                        <HeaderRow word={r.word} key={"h" + i}/>
+                        <SongListRow tracks={r.tracks.tracks} key={"s" + i}/>
                     </>
                 )}
+
+                {results === undefined &&
+                    <Grid direction="row" className="grow w-full px-0 pt-2">
+                        <span className="pl-0">No results available</span>
+                    </Grid>}
 
             </Grid>
         </Box>

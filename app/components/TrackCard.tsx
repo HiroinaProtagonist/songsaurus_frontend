@@ -3,7 +3,7 @@ import {IoPlay, IoPauseCircle, IoPlaySkipBackSharp, IoPlaySharp, IoPause} from "
 import {useState} from "react";
 
 export function TrackCard(track) {
-    console.log(`Track: ${JSON.stringify(track.track.track)}`);
+    console.log(`Track data for card: ${JSON.stringify(track)}`);
 
     const [playing, setPlaying] = useState<boolean>();
 
@@ -14,15 +14,18 @@ export function TrackCard(track) {
                 <Box sx={{display: 'flex', flexDirection: 'column',
                     justifyContent: 'center', alignItems: 'center',
                     // border: 'thin solid black',
-                    height: 220, width: 220}}
+                    height: track.track.album.images[1].height * 1.25,
+                    width: track.track.album.images[1].width * 1.1
+                    }}
                 >
                     <div className="pb-2"><span className="text-4xl">OO</span>, Powered by Spotify</div>
                     <CardMedia id='album_art' component='img'
                                sx = {{ borderRadius: '8px',
                                    border: 'thin solid black',
-                                   width: 200, height: 150}}
-                               image = {track.track.track.image}
-                               alt = {track.track.track.alt}
+                                   width: track.track.album.images[1].width,
+                                   height: track.track.album.images[1].height}}
+                               image = {track.track.album.images[1].url}
+                               alt = "test"
                     />
                 </Box>
                 <Box sx={{ display:'flex', flexDirection:'row', flexWrap:'nowrap', justifyContent:'center'}} className="border-y-2 border-y-black">
@@ -61,9 +64,13 @@ export function TrackCard(track) {
                     </div>
                 </Box>
                 <CardContent sx={{ flex: '1 0 auto', border: 'none'}}>
-                    <Typography>{track.track.track.title}</Typography>
-                    <Typography>{track.track.track.artist}</Typography>
-                    <Typography>{track.track.track.album}, {track.track.track.year}</Typography>
+                    <Typography>{track.track.name}</Typography>
+
+                    {track.track.artists.map((a) =>
+                            <Typography>{a.name}, </Typography>
+                    )}
+
+                    <Typography>{track.track.album.name}, {track.track.album.release_date}</Typography>
                 </CardContent>
             </Box>
         </Card>

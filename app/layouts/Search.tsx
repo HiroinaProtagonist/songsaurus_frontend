@@ -12,12 +12,12 @@ export function Search({clouds, cloud, setCloud}: any) {
     const [results, setResults] = useState<any>();
 
     //TODO get results for cloud from Spotify
-    console.log(
-        `
-        Explicit: ${explicit}; 
-        Cloud: ${JSON.stringify(cloud)}; 
-        Loaded: ${loaded}; 
-        Results: ${JSON.stringify(results)}`);
+    // console.log(
+    //     `
+    //     Explicit: ${explicit};
+    //     Cloud: ${JSON.stringify(cloud)};
+    //     Loaded: ${loaded};
+    //     Results: ${JSON.stringify(results)}`);
 
     return (
         <Stack direction="column">
