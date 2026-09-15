@@ -107,8 +107,8 @@ export function CloudSelector({loaded, setLoaded,
                 <button className="px-1 mt-2 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        getSampleTracks(explicit, cloud);
-                        // getTracks(explicit, LIMIT, cloud);
+                        // getSampleTracks(explicit, cloud);
+                        getTracks(explicit, LIMIT, cloud);
                 }}>Get songs</button>
             </form>
         </div>

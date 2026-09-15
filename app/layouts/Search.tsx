@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Stack} from "@mui/material";
 import {Results} from "~/components/Results";
 import { sample } from "~/data/sample_tracks";
+import {CloudDisplay} from "~/components/CloudDisplay";
 
 export function Search({clouds, cloud, setCloud}: any) {
 
@@ -21,11 +22,15 @@ export function Search({clouds, cloud, setCloud}: any) {
 
     return (
         <Stack direction="column">
-            <CloudSelector loaded={loaded} setLoaded={setLoaded}
-                           clouds={clouds}
-                           cloud={cloud} setCloud={setCloud}
-                           explicit={explicit} setExplicit={setExplicit}
-                           results={results} setResults={setResults} />
+            <Stack direction={{xs: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
+                <CloudSelector loaded={loaded} setLoaded={setLoaded}
+                               clouds={clouds}
+                               cloud={cloud} setCloud={setCloud}
+                               explicit={explicit} setExplicit={setExplicit}
+                               results={results} setResults={setResults} />
+
+                <CloudDisplay loaded={loaded} cloud={cloud} />
+            </Stack>
 
             { loaded && <Results results={results} /> }
         </Stack>

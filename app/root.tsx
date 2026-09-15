@@ -23,6 +23,10 @@ export const links: Route.LinksFunction = () => [
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
     },
+    {
+        rel: "preconnect",
+        href: "https://open.spotify.com/embed/iframe-api/v1"
+    }
 ];
 
 export function Layout({children}: { children: React.ReactNode }) {
@@ -33,6 +37,7 @@ export function Layout({children}: { children: React.ReactNode }) {
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <Meta/>
             <Links/>
+            <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
         </head>
         <body className="flex flex-col justify-between h-screen border-y-0 border-thick border-blue-600 mx-16 mb-4">
         {children}

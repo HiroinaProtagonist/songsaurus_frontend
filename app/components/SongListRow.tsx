@@ -1,5 +1,6 @@
 import {TrackCard} from "~/components/TrackCard";
 import {Box, Grid, Stack} from "@mui/material";
+import {EmbedTrackCard} from "~/components/EmbedTrackCard";
 
 export function SongListRow({tracks}) {
     console.log(`Tracks in songlistrow: ${JSON.stringify(tracks)}`);
@@ -7,15 +8,17 @@ export function SongListRow({tracks}) {
     //TODO add grid sizing
     return (
         <>
-            <Stack direction="row" spacing={2} className="pl-2 border-0 border-purple-400">
+            <Grid container spacing={0} className="pl-2 border-0 border-purple-400">
 
-            {tracks !== undefined &&
-                tracks !== null &&
-                tracks.items.map((t) =>
-                <TrackCard track={t} key={t.id}/>
-            )}
+                {tracks !== undefined &&
+                    tracks !== null &&
+                    tracks.items.map((t) =>
+                        <EmbedTrackCard track={t} key={t.id}/>
+                    )}
 
-            </Stack>
+
+
+            </Grid>
         </>
     );
 }
