@@ -1,7 +1,7 @@
 import {MdDelete, MdEdit} from "react-icons/md";
 
 
-export function CloudWordEditButtons() {
+export function CloudWordEditButtons(word) {
     return (
         <>
 

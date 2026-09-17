@@ -7,7 +7,7 @@ export function TitleBar() {
             <Stack direction="row" className="justify-between mb-4">
                 {/*<span className="text-xl">SPOTIWORDS</span>*/}
                 <span>
-                    <Link to="/">Home</Link>
+                    <a href="/">Home</a>
                     {/*<Link to="/">Account</Link>*/}
                 </span>
             </Stack>

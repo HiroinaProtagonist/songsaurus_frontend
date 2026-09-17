@@ -49,7 +49,7 @@ export function CloudSelector({loaded, setLoaded,
     };
 
     return (
-        <div className="p-2 border-0 border-purple-600">
+        <div className="p-3 border-0 border-purple-600">
             <form>
                 <span className="border-0">
                     <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
@@ -66,30 +66,32 @@ export function CloudSelector({loaded, setLoaded,
                         )}
                     </select>
 
-                    <span className="mt-1 pt-1 align-text-top text-xl">
-                        <button className="ml-2 font-bold"
-                            onClick={e => {
-                                e.preventDefault();
-                                console.log(`cloud edit: ${JSON.stringify(cloud)}`);
-                                // navigate
-                            }}
-                        >
-                            <MdEdit/>
-                        </button>
-                    </span>
+                    {/*<span className="mt-1 pt-1 align-text-top text-xl">*/}
+                    {/*    <button className="ml-2 font-bold"*/}
+                    {/*        onClick={e => {*/}
+                    {/*            e.preventDefault();*/}
+                    {/*            console.log(`cloud edit: ${JSON.stringify(cloud)}`);*/}
+                    {/*            // navigate*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        <MdEdit/>*/}
+                    {/*    </button>*/}
+                    {/*</span>*/}
 
-                    <span className="mt-1 pt-1 align-text-top text-xl">
-                        <button className="ml-2 font-bold"
-                            onClick={e => {
-                                e.preventDefault();
-                                console.log(`cloud del: `)
-                                console.log(cloud);
-                                // navigate
-                            }}
-                        >
-                            <MdDelete/>
-                        </button>
-                    </span>
+                    {/*<span className="mt-1 pt-1 align-text-top text-xl">*/}
+                    {/*    <button className="ml-2 font-bold"*/}
+                    {/*        onClick={e => {*/}
+                    {/*            e.preventDefault();*/}
+                    {/*            console.log(`cloud del: `)*/}
+                    {/*            console.log(cloud);*/}
+                    {/*            // navigate*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        <MdDelete/>*/}
+                    {/*    </button>*/}
+                    {/*</span>*/}
+
+
                 </span>
 
                 <div className="">

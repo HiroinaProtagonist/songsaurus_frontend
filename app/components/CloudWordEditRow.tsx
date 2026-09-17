@@ -1,6 +1,6 @@
 
 
-export function CloudWordEditRow() {
+export function CloudWordEditRow({word}) {
     return (
         <>
 
