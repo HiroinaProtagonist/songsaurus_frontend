@@ -60,7 +60,7 @@ export function CloudSelector({loaded, setLoaded,
                             // setCloud(e.target.value);
                         }}
                     >
-                        <option value='' key='0'>Choose cloud</option>
+                        <option value='' disabled={true} selected key='0'>Choose cloud</option>
                         {clouds.map((cloud:CloudRecord) =>
                             <option value={cloud.elements} key={cloud.id} >{cloud.title}</option>
                         )}
