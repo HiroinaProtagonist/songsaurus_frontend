@@ -3,6 +3,7 @@ import {MdDelete, MdEdit} from "react-icons/md";
 import {useState} from "react";
 import {CloudWordEditButtons} from "~/components/CloudWordEditButtons";
 import {Box} from "@mui/material";
+import {CloudWordEditInterface} from "~/components/CloudWordEditInterface";
 
 
 export function CloudDisplay({loaded, cloud}) {
@@ -51,17 +52,7 @@ export function CloudDisplay({loaded, cloud}) {
             {loaded && editCloud && <div className="max-w-2/3 w-[239.733px] pt-3 pl-4
                 wrap-break-word whitespace-normal
                 border-0 border-pink-600">
-                <form>
-                    {cloud.map((c, i) => <div>
-                        <form>
-                            <label>Edit: </label>
-                            <input type="text" className="pl-1 border border-black max-w-fit w-32" value={c}
-                                // onChange={}
-                            />
-                            <CloudWordEditButtons word={c}/>
-                        </form>
-                    </div>)}
-                </form>
+                <CloudWordEditInterface cloud={cloud}/>
             </div>}
 
             {!loaded && <div className="pl-4 pt-3">
