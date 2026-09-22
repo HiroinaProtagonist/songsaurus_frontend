@@ -1,6 +1,6 @@
 import {CloudSelector} from "~/components/CloudSelector";
 import {useEffect, useState} from "react";
-import {Stack} from "@mui/material";
+import {Grid, Stack} from "@mui/material";
 import {Results} from "~/components/Results";
 import { sample } from "~/data/sample_tracks";
 import {CloudDisplay} from "~/components/CloudDisplay";
@@ -21,18 +21,24 @@ export function Search({clouds, cloud, setCloud}: any) {
     //     Results: ${JSON.stringify(results)}`);
 
     return (
-        <Stack direction="column">
-            <Stack direction={{xs: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
+        <Grid container spacing={1} size={12}>
+            <Grid size="auto">
                 <CloudSelector loaded={loaded} setLoaded={setLoaded}
                                clouds={clouds}
                                cloud={cloud} setCloud={setCloud}
                                explicit={explicit} setExplicit={setExplicit}
                                results={results} setResults={setResults} />
+            </Grid>
 
+            <Grid size={{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}}>
                 <CloudDisplay loaded={loaded} cloud={cloud} />
-            </Stack>
+            </Grid>
 
-            { loaded && <Results results={results} /> }
-        </Stack>
+            { loaded &&
+                <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
+                    <Results results={results} />
+                </Grid>
+            }
+        </Grid>
     )
 }

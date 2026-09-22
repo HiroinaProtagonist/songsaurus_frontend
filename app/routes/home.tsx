@@ -28,7 +28,7 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
     return (
         <Box sx={{flexGrow: 1}} className="justify-between">
             <TitleBar/>
-            <Stack direction="column" className="grow border-0 border-pink-400">
+            <Stack direction="column" className="grow border-0 border-orange-400">
                 <Grid container spacing={0}>
                     <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
                         <div className="text-center border-b-4 border-black">
@@ -37,16 +37,9 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
                     </Grid>
                     <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
                         <div className="border-b-0 border-black">
-                            <Search clouds={clouds}
-                                    cloud={cloud} setCloud={setCloud}/>
+                            <Search clouds={clouds} cloud={cloud} setCloud={setCloud}/>
                         </div>
                     </Grid>
-                    {/*<Grid size={{xs: 12, sm: 12, md: 8, lg: 8, xl: 8}}>*/}
-                    {/*    <div className="border-b-0 border-black">*/}
-                    {/*        /!*<CloudUI cloud={cloud}/>*!/*/}
-                    {/*        /!*<ResultsStack results={trackResults}/>*!/*/}
-                    {/*    </div>*/}
-                    {/*</Grid>*/}
                 </Grid>
             </Stack>
         </Box>

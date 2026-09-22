@@ -4,11 +4,6 @@ import {HeaderRow} from "~/components/HeaderRow";
 
 //results = {tracks=tracks, word=word}[]
 export function Results({results}) {
-
-    // if(results !== undefined) {
-    //     console.log(`Results received from backend: ${JSON.stringify(results)}`);
-    // }
-
     return (
         <Box sx={{flexGrow: 1}}
              className="w-full mt-8 px-6 border-0 border-green-400">

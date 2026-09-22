@@ -57,6 +57,7 @@ export function CloudSelector({loaded, setLoaded,
                         className="ml-2 px-1 border border-black"
                         onChange={e => {
                             setCloud(stringToStringArray(e.target.value));
+                            setLoaded(false);
                             // setCloud(e.target.value);
                         }}
                     >
@@ -65,33 +66,6 @@ export function CloudSelector({loaded, setLoaded,
                             <option value={cloud.elements} key={cloud.id} >{cloud.title}</option>
                         )}
                     </select>
-
-                    {/*<span className="mt-1 pt-1 align-text-top text-xl">*/}
-                    {/*    <button className="ml-2 font-bold"*/}
-                    {/*        onClick={e => {*/}
-                    {/*            e.preventDefault();*/}
-                    {/*            console.log(`cloud edit: ${JSON.stringify(cloud)}`);*/}
-                    {/*            // navigate*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <MdEdit/>*/}
-                    {/*    </button>*/}
-                    {/*</span>*/}
-
-                    {/*<span className="mt-1 pt-1 align-text-top text-xl">*/}
-                    {/*    <button className="ml-2 font-bold"*/}
-                    {/*        onClick={e => {*/}
-                    {/*            e.preventDefault();*/}
-                    {/*            console.log(`cloud del: `)*/}
-                    {/*            console.log(cloud);*/}
-                    {/*            // navigate*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <MdDelete/>*/}
-                    {/*    </button>*/}
-                    {/*</span>*/}
-
-
                 </span>
 
                 <div className="">
@@ -109,8 +83,9 @@ export function CloudSelector({loaded, setLoaded,
                 <button className="px-1 mt-2 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        // getSampleTracks(explicit, cloud);
-                        getTracks(explicit, LIMIT, cloud);
+                        getSampleTracks(explicit, cloud);
+                        setLoaded(true);
+                        // getTracks(explicit, LIMIT, cloud);
                 }}>Get songs</button>
             </form>
         </div>
