@@ -2,7 +2,7 @@ import {Box, Grid, Stack} from "@mui/material";
 import {SongListRow} from "~/components/SongListRow";
 import {HeaderRow} from "~/components/HeaderRow";
 
-export function Results({results}) {
+export function Results({results, explicit}) {
     return (
         <Box sx={{flexGrow: 1}}
              className="w-full mt-8 px-6 border-0 border-green-400">
@@ -15,7 +15,7 @@ export function Results({results}) {
                     results.map((r, i: number) =>
                     <>
                         <HeaderRow word={r.word} key={"h" + i}/>
-                        <SongListRow tracks={r.tracks.tracks} key={"s" + i}/>
+                        <SongListRow tracks={r.tracks.tracks} explicit={explicit} key={"s" + i}/>
                     </>
                 )}
 

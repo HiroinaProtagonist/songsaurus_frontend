@@ -6,7 +6,7 @@ import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 export function CloudDisplay({loaded, cloud}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
     //TODO xs - set width to 100%
-    console.log("CloudDisplay: " + JSON.stringify(cloud) + `; EditCloud: ${editCloud}`);
+    // console.log("CloudDisplay: " + JSON.stringify(cloud) + `; EditCloud: ${editCloud}`);
 
     function doDeleteCloud(cloud) {
          console.log("Called delete");

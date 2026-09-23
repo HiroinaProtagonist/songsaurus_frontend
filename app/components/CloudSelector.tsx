@@ -12,7 +12,7 @@ import type {Game} from "~/model/game";
 import type {Tracks} from "~/model/tracks";
 import {ResultToTracks} from "~/data/ItemToTrack";
 
-export function CloudSelector({loaded, setLoaded,
+export function CloudSelector({setLoaded,
                                clouds,
                                cloud, setCloud,
                                explicit, setExplicit,
@@ -26,7 +26,7 @@ export function CloudSelector({loaded, setLoaded,
     // console.log(`Explicit initial: ${explicit}`);
 
     function getSampleTracks(explicit:boolean, cloud:string) {
-        console.log(`Explicit: ${explicit}; Cloud: ${cloud}`)
+        console.log(`Load sample for cloud: ${cloud} with explicit: ${explicit}`)
         setResults(sample);
         setLoaded(true);
     }
@@ -83,8 +83,8 @@ export function CloudSelector({loaded, setLoaded,
                 <button className="px-1 mt-2 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        // getSampleTracks(explicit, cloud);
-                        getTracks(explicit, LIMIT, cloud);
+                        getSampleTracks(explicit, cloud);
+                        // getTracks(explicit, LIMIT, cloud);
                         setLoaded(true);
                 }}>Get songs</button>
             </form>
