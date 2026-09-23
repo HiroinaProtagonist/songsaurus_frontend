@@ -28,7 +28,7 @@ export function Search({clouds}: any) {
 
             { results &&
                 <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
-                    <Results results={results} loaded={loaded} />
+                    <Results results={results} />
                 </Grid>
             }
         </Grid>

@@ -2,7 +2,7 @@ import {Box, Grid, Stack} from "@mui/material";
 import {SongListRow} from "~/components/SongListRow";
 import {HeaderRow} from "~/components/HeaderRow";
 
-export function Results({results, loaded}) {
+export function Results({results}) {
     return (
         <Box sx={{flexGrow: 1}}
              className="w-full mt-8 px-6 border-0 border-green-400">
@@ -19,15 +19,10 @@ export function Results({results, loaded}) {
                     </>
                 )}
 
-                {/*{!results &&*/}
-                {/*    <Grid direction="row" className="grow w-full px-0 pt-2">*/}
-                {/*        <span className="pl-0">No results available</span>*/}
-                {/*    </Grid>}*/}
-
-                {/*{!loaded &&*/}
-                {/*    <Grid direction="row" className="grow w-full px-0 pt-2">*/}
-                {/*        <span className="pl-0"></span>*/}
-                {/*    </Grid>}*/}
+                {!results &&
+                    <Grid direction="row" className="grow w-full px-0 pt-2">
+                        <span className="pl-0">No results available</span>
+                    </Grid>}
 
             </Grid>
         </Box>
