@@ -16,7 +16,7 @@ export function CloudSelector({loaded, setLoaded,
                                clouds,
                                cloud, setCloud,
                                explicit, setExplicit,
-                               results, setResults
+                               setResults
                               }:any){
 
     const explicitCheckRef = useRef(null);

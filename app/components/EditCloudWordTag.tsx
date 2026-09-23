@@ -1,11 +1,12 @@
 import {Box, Paper} from "@mui/material";
 import {Link} from "react-router";
-import {FcCheckmark} from "react-icons/fc";
 import {GrCheckmark} from "react-icons/gr";
 import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
 
-export function EditCloudWordTag({word, editCloud, loaded}) {
+export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
+    // console.log(`Tag: ${cloud}; Word: ${word}`);
+
     const [cloudWord, setCloudWord] = useState<string>(word);
     return (
         <Box sx={{

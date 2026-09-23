@@ -6,7 +6,7 @@ import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 export function CloudDisplay({loaded, cloud}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
     //TODO xs - set width to 100%
-    console.log("CloudDisplay: " + JSON.stringify(cloud));
+    console.log("CloudDisplay: " + JSON.stringify(cloud) + `; EditCloud: ${editCloud}`);
 
     function doDeleteCloud(cloud) {
          console.log("Called delete");
@@ -18,13 +18,13 @@ export function CloudDisplay({loaded, cloud}) {
 
     return (
         <>
-            {cloud && !editCloud &&
-            <div className="pt-3 ml-3 pl-4 pr-2 min-w-11/12">
+            {loaded && cloud && !editCloud &&
+            <div className="pt-3 ml-3 pl-4 pr-2 min-w-full">
                 <div className="flex flex-row justify-between">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
                             {cloud.map((c, i) =>
-                                <EditCloudWordTag word={c} key={i} editCloud={editCloud} loaded={loaded}/>
+                                <EditCloudWordTag cloud={cloud} word={c} key={i} editCloud={editCloud} loaded={loaded}/>
                             )}
                         </Grid>
                     </Box>
@@ -55,12 +55,13 @@ export function CloudDisplay({loaded, cloud}) {
                 </div>
             </div>}
 
-            {cloud && editCloud && <div className="pt-3 ml-3 pl-4 pr-2 min-w-full border-0 border-blue-800">
+            {loaded && cloud && editCloud &&
+            <div className="pt-3 ml-3 pl-4 pr-2 min-w-full">
                 <div className="flex flex-row justify-between">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-0 border-black">
                             {cloud.map((c, i) =>
-                                <EditCloudWordTag word={c} key={i} editCloud={editCloud} loaded={loaded}/>
+                                <EditCloudWordTag cloud={cloud} word={c} key={i} editCloud={editCloud} loaded={loaded}/>
                             )}
                         </Grid>
                     </Box>

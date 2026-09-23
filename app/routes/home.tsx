@@ -22,9 +22,6 @@ export async function clientLoader() {
 export default function Home({ loaderData, }:Route.ComponentProps) {
     const { clouds } = loaderData;
 
-    const[cloud, setCloud] = useState<string>();
-    const[trackResults, setTrackResults] = useState<[]>();
-
     return (
         <Box sx={{flexGrow: 1}} className="justify-between">
             <TitleBar/>
@@ -37,7 +34,7 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
                     </Grid>
                     <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
                         <div className="border-b-0 border-black">
-                            <Search clouds={clouds} cloud={cloud} setCloud={setCloud}/>
+                            <Search clouds={clouds}/>
                         </div>
                     </Grid>
                 </Grid>
