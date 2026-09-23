@@ -3,19 +3,11 @@ import {Link} from "react-router";
 import {FcCheckmark} from "react-icons/fc";
 import {GrCheckmark} from "react-icons/gr";
 import {MdOutlineDeleteForever} from "react-icons/md";
-import {useState} from "react";
+import {useRef, useState} from "react";
 
-export function EditCloudWordTag({word, toggleActive}) {
+export function EditCloudWordTag({word, editCloud, loaded}) {
     const [cloudWord, setCloudWord] = useState<string>(word);
     return (
-        // <span className="pr-2">
-        //     <Link to={"#" + word}>
-        //         <Paper className="max-w-fit min-w-fit">
-        //             {word}
-        //         </Paper>
-        //     </Link>
-        // </span>
-
         <Box sx={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -25,18 +17,20 @@ export function EditCloudWordTag({word, toggleActive}) {
                 // height: 20,
             },
         }} className="align-middle">
+
             <form>
-                <Paper className="w-fit p-2 align-middle">
-                    {toggleActive && <input type="text" name="editWordTag" id="editWordTag" value={cloudWord}
+                <Paper className="w-auto p-2 align-middle">
+                    {editCloud && <input type="text" name="editWordTag" id="editWordTag"
+                        value={cloudWord} size={word.length}
                         className="p-1 w-20 border-1 border-black"
                         onChange={e => setCloudWord(e.target.value)}
                     />}
 
-                    {!toggleActive && <Link to={"#" + word}>{word}</Link>}
+                    {!editCloud && loaded && <Link to={"#" + word}>{word}</Link>}
 
-                    {toggleActive && <label>
+                    {editCloud && <label>
                         <button
-                            className="pl-2 mt-1"
+                            className="pl-2 mt-4"
                             onClick={e => {
                                 e.preventDefault();
                                 console.log(`Clicked edit: ${cloudWord}`)
@@ -55,6 +49,7 @@ export function EditCloudWordTag({word, toggleActive}) {
 
                 </Paper>
             </form>
+
         </Box>
     )
 }

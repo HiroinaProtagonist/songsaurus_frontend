@@ -1,8 +1,6 @@
-import {Link} from "react-router";
-import {MdDelete, MdEdit} from "react-icons/md";
+import {MdCancel, MdDelete, MdEdit} from "react-icons/md";
 import {useState} from "react";
-import {Box, Grid, Paper} from "@mui/material";
-import {CloudWordEditInterface} from "~/components/CloudWordEditInterface";
+import {Box, Grid} from "@mui/material";
 import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 
 export function CloudDisplay({loaded, cloud}) {
@@ -14,51 +12,69 @@ export function CloudDisplay({loaded, cloud}) {
          console.log("Called delete");
     }
 
+    function doEditCloud(cloud) {
+        console.log("Called edit");
+    }
+
     return (
         <>
-            {loaded && !editCloud && <div className="pt-3 ml-3 pl-4 pr-2 min-w-11/12
-                {/*wrap-break-word whitespace-normal*/}
-                {/*text-pretty*/}
-                border-1 border-pink-600">
-                <Box>
-                    <Grid container size="auto" spacing={1}>
-                        {cloud.map((c, i) =>
-                            <EditCloudWordTag word={c} key={i} toggleActive={false}/>
-                        )}
+            {cloud && !editCloud &&
+            <div className="pt-3 ml-3 pl-4 pr-2 min-w-11/12">
+                <div className="flex flex-row justify-between">
+                    <Box>
+                        <Grid container size="auto" spacing={1} className="border-1 border-black">
+                            {cloud.map((c, i) =>
+                                <EditCloudWordTag word={c} key={i} editCloud={editCloud} loaded={loaded}/>
+                            )}
+                        </Grid>
+                    </Box>
 
-                        <div>
-                            <span className="mt-1 pt-1 align-text-top text-xl">
-                                <button className="ml-2 font-bold"
-                                        onClick={e => {
-                                            setEditCloud(!editCloud);
-                                            e.preventDefault();
-                                        }}
-                                >
-                                    <MdEdit/>
-                                </button>
-                            </span>
-                            <span className="mt-1 pt-1 align-text-top text-xl">
-                                <button className="ml-2 font-bold"
-                                        onClick={e => {
-                                            e.preventDefault();
-                                            doDeleteCloud(cloud);
-                                        }}
-                                >
-                                    <MdDelete/>
-                                </button>
-                            </span>
+                    <div>
+                        <div className="mt-1 text-xl">
+                            <button className="ml-2 font-bold"
+                                    onClick={e => {
+                                        setEditCloud(!editCloud);
+                                        e.preventDefault();
+                                    }}
+                            >
+                                <MdEdit/>
+                            </button>
                         </div>
 
-                    </Grid>
-                </Box>
+                        <div className="mt-1 text-xl">
+                            <button className="ml-2 font-bold"
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        doDeleteCloud(cloud);
+                                    }}
+                            >
+                                <MdDelete/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>}
 
-            {loaded && editCloud && <div className="max-w-2/3 w-[239.733px] pt-3 pl-4
-                wrap-break-word whitespace-normal
-                border-0 border-pink-600">
-                {cloud.map((c, i) =>
-                    <EditCloudWordTag word={c} key={i} toggleActive={true}/>
-                )}
+            {cloud && editCloud && <div className="pt-3 ml-3 pl-4 pr-2 min-w-full border-0 border-blue-800">
+                <div className="flex flex-row justify-between">
+                    <Box>
+                        <Grid container size="auto" spacing={1} className="border-0 border-black">
+                            {cloud.map((c, i) =>
+                                <EditCloudWordTag word={c} key={i} editCloud={editCloud} loaded={loaded}/>
+                            )}
+                        </Grid>
+                    </Box>
+                    <div className="mt-1 text-xl">
+                        <button className="ml-2 font-bold"
+                                onClick={e => {
+                                    e.preventDefault();
+                                    setEditCloud(false);
+                                }}
+                        >
+                            <MdCancel/>
+                        </button>
+                    </div>
+                </div>
             </div>}
         </>
     )

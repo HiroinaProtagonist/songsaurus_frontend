@@ -7,7 +7,7 @@ export function CloudWordEditButtons(word) {
     return (
         <>
             <span className="border-1 border-blue-400 mt-1 pt-1 align-text-top text-xl">
-                <button className="ml-2 font-bold"
+                <button className="mt-1 ml-2 font-bold"
                         onClick={e => {
                             //TODO update database and loaded string
                             e.preventDefault();
@@ -19,7 +19,7 @@ export function CloudWordEditButtons(word) {
             </span>
 
             <span className="border-1 border-blue-400 mt-1 pt-1 align-text-top text-xl">
-                <button className="ml-2 font-bold"
+                <button className="mt-1 ml-2 font-bold"
                         onClick={e => {
                             //TODO update database and loaded string
                             e.preventDefault();
