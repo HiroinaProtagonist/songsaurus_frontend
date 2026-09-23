@@ -31,7 +31,8 @@ export function CloudSelector({loaded, setLoaded,
         setLoaded(true);
     }
 
-    const getTracks = async (explicit:boolean, limit:string, cloud:string[]) => {
+    const getTracks =
+        async (explicit:boolean, limit:string, cloud:string[]) => {
         console.log(`Searching for tracks for cloud: ${JSON.stringify(cloud)}`);
         axios
             .get<Tracks[]>(`/songsaurus/multi/${limit}/${cloud}`)
@@ -58,7 +59,6 @@ export function CloudSelector({loaded, setLoaded,
                         onChange={e => {
                             setCloud(stringToStringArray(e.target.value));
                             setLoaded(false);
-                            // setCloud(e.target.value);
                         }}
                     >
                         <option value='' disabled={true} selected key='0'>Choose cloud</option>
@@ -83,9 +83,9 @@ export function CloudSelector({loaded, setLoaded,
                 <button className="px-1 mt-2 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        getSampleTracks(explicit, cloud);
+                        // getSampleTracks(explicit, cloud);
+                        getTracks(explicit, LIMIT, cloud);
                         setLoaded(true);
-                        // getTracks(explicit, LIMIT, cloud);
                 }}>Get songs</button>
             </form>
         </div>

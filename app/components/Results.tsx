@@ -11,7 +11,7 @@ export function Results({results, loaded}) {
                   className="pl-2"
             >
 
-                {loaded && results &&
+                {results &&
                     results.map((r, i: number) =>
                     <>
                         <HeaderRow word={r.word} key={"h" + i}/>
@@ -19,15 +19,15 @@ export function Results({results, loaded}) {
                     </>
                 )}
 
-                {loaded && !results &&
-                    <Grid direction="row" className="grow w-full px-0 pt-2">
-                        <span className="pl-0">No results available</span>
-                    </Grid>}
+                {/*{!results &&*/}
+                {/*    <Grid direction="row" className="grow w-full px-0 pt-2">*/}
+                {/*        <span className="pl-0">No results available</span>*/}
+                {/*    </Grid>}*/}
 
-                {!loaded &&
-                    <Grid direction="row" className="grow w-full px-0 pt-2">
-                        <span className="pl-0"></span>
-                    </Grid>}
+                {/*{!loaded &&*/}
+                {/*    <Grid direction="row" className="grow w-full px-0 pt-2">*/}
+                {/*        <span className="pl-0"></span>*/}
+                {/*    </Grid>}*/}
 
             </Grid>
         </Box>

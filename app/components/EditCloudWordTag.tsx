@@ -21,33 +21,37 @@ export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
 
             <form>
                 <Paper className="w-auto p-2 align-middle">
-                    {editCloud && <input type="text" name="editWordTag" id="editWordTag"
-                        value={cloudWord} size={word.length}
-                        className="p-1 w-20 border-1 border-black"
-                        onChange={e => setCloudWord(e.target.value)}
-                    />}
+                    {!editCloud && !loaded && <>{word}</>}
 
                     {!editCloud && loaded && <Link to={"#" + word}>{word}</Link>}
 
-                    {editCloud && <label>
-                        <button
-                            className="pl-2 mt-4"
-                            onClick={e => {
-                                e.preventDefault();
-                                console.log(`Clicked edit: ${cloudWord}`)
-                        }}>
-                            <GrCheckmark />
-                        </button>
-                        <button
-                            className="pl-2 mt-1"
-                            onClick={e => {
-                                e.preventDefault();
-                                console.log(`Clicked delete: ${cloudWord}`);
-                        }}>
-                            <MdOutlineDeleteForever />
-                        </button>
-                    </label>}
+                    {editCloud &&
+                    <>
+                        <input type="text" name="editWordTag" id="editWordTag"
+                            value={cloudWord} size={word.length}
+                            className="p-1 w-20 border-1 border-black w-[]"
+                            onChange={e => setCloudWord(e.target.value)}
+                        />
 
+                        <label>
+                            <button
+                                className="pl-2 mt-4"
+                                onClick={e => {
+                                    e.preventDefault();
+                                    console.log(`Clicked edit: ${cloudWord}`)
+                            }}>
+                                <GrCheckmark />
+                            </button>
+                            <button
+                                className="pl-2 mt-1"
+                                onClick={e => {
+                                    e.preventDefault();
+                                    console.log(`Clicked delete: ${cloudWord}`);
+                            }}>
+                                <MdOutlineDeleteForever />
+                            </button>
+                        </label>
+                    </>}
                 </Paper>
             </form>
 

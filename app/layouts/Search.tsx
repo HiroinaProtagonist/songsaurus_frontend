@@ -26,7 +26,7 @@ export function Search({clouds}: any) {
                 <CloudDisplay loaded={loaded} cloud={cloud} />
             </Grid>
 
-            { loaded &&
+            { results &&
                 <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
                     <Results results={results} loaded={loaded} />
                 </Grid>

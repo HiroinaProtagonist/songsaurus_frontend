@@ -18,7 +18,7 @@ export function CloudDisplay({loaded, cloud}) {
 
     return (
         <>
-            {loaded && cloud && !editCloud &&
+            {cloud &&
             <div className="pt-3 ml-3 pl-4 pr-2 min-w-full">
                 <div className="flex flex-row justify-between">
                     <Box>
@@ -29,6 +29,7 @@ export function CloudDisplay({loaded, cloud}) {
                         </Grid>
                     </Box>
 
+                    {!editCloud &&
                     <div>
                         <div className="mt-1 text-xl">
                             <button className="ml-2 font-bold"
@@ -51,20 +52,9 @@ export function CloudDisplay({loaded, cloud}) {
                                 <MdDelete/>
                             </button>
                         </div>
-                    </div>
-                </div>
-            </div>}
+                    </div>}
 
-            {loaded && cloud && editCloud &&
-            <div className="pt-3 ml-3 pl-4 pr-2 min-w-full">
-                <div className="flex flex-row justify-between">
-                    <Box>
-                        <Grid container size="auto" spacing={1} className="border-0 border-black">
-                            {cloud.map((c, i) =>
-                                <EditCloudWordTag cloud={cloud} word={c} key={i} editCloud={editCloud} loaded={loaded}/>
-                            )}
-                        </Grid>
-                    </Box>
+                    {editCloud &&
                     <div className="mt-1 text-xl">
                         <button className="ml-2 font-bold"
                                 onClick={e => {
@@ -74,7 +64,7 @@ export function CloudDisplay({loaded, cloud}) {
                         >
                             <MdCancel/>
                         </button>
-                    </div>
+                    </div>}
                 </div>
             </div>}
         </>
