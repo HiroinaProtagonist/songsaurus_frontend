@@ -8,13 +8,14 @@ export default defineConfig({
         tsconfigPaths: true,
     },
     server: {
+        port: 9959,
         proxy: {
             '/songsaurus': {
                 target: 'http://localhost:9191/api/'
             },
-            '/games': {
-                target: 'http://localhost:8989/api/'
-            }
+            // '/games': {
+            //     target: 'http://localhost:8989/api/'
+            // }
         }
     }
 });
