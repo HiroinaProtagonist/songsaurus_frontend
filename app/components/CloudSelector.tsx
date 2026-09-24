@@ -50,10 +50,10 @@ export function CloudSelector({setLoaded,
     };
 
     return (
-        <div className="p-3 border-0 border-purple-600">
+        <div className="pr-2 pb-1 mt-0 border-0 border-purple-600">
             <form>
                 <span className="border-0">
-                    <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
+                    <label htmlFor="cloudSelect" className="pl-2">Cloud:</label>
                     <select name="cloudSelect" id="cloudSelect"
                         className="ml-2 px-1 border border-black"
                         onChange={e => {
@@ -69,8 +69,8 @@ export function CloudSelector({setLoaded,
                 </span>
 
                 <div className="">
-                    <label className="ml-2 pl-2">Include explicit songs</label>
-                    <input className="ml-2 pl-2" ref={explicitCheckRef} type="checkbox" id="explicit"
+                    <label className="ml-2">Include explicit songs</label>
+                    <input className="ml-3 pl-2" ref={explicitCheckRef} type="checkbox" id="explicit"
                            name="explicit" defaultChecked={explicit}
                            onChange={e => {
                                e.stopPropagation();
@@ -80,11 +80,11 @@ export function CloudSelector({setLoaded,
                     />
                 </div>
 
-                <button className="px-1 mt-2 ml-28 border border-black w-fit"
+                <button className="px-1 mt-4 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        getSampleTracks(explicit, cloud);
-                        // getTracks(explicit, LIMIT, cloud);
+                        // getSampleTracks(explicit, cloud);
+                        getTracks(explicit, LIMIT, cloud);
                         setLoaded(true);
                 }}>Get songs</button>
             </form>

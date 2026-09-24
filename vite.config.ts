@@ -13,9 +13,6 @@ export default defineConfig({
             '/songsaurus': {
                 target: 'http://localhost:9191/api/'
             },
-            // '/games': {
-            //     target: 'http://localhost:8989/api/'
-            // }
         }
     }
 });

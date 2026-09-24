@@ -5,7 +5,6 @@ import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 
 export function CloudDisplay({loaded, cloud}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
-    //TODO xs - set width to 100%
     // console.log("CloudDisplay: " + JSON.stringify(cloud) + `; EditCloud: ${editCloud}`);
 
     function doDeleteCloud(cloud) {
@@ -19,8 +18,8 @@ export function CloudDisplay({loaded, cloud}) {
     return (
         <>
             {cloud &&
-            <div className="pt-3 ml-3 pl-4 pr-2 min-w-full">
-                <div className="flex flex-row justify-between">
+                <div className="pl-4 pr-2 pb-1 mt-0.5">
+                <div className="flex flex-row justify-start">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
                             {cloud.map((c, i) =>

@@ -1,16 +1,29 @@
-import {Box, Stack} from "@mui/material";
 import {Link} from "react-router";
 
 export function TitleBar() {
+    //TODO activate account, change link
+
     return (
-        <Box id="top" sx={{ flexGrow: 1 }} className="">
-            <Stack direction="row" className="justify-between mb-4">
-                {/*<span className="text-xl">SPOTIWORDS</span>*/}
-                <span>
-                    <a href="/">Home</a>
-                    {/*<Link to="/">Account</Link>*/}
-                </span>
-            </Stack>
-        </Box>
+        <div id="top" className="flex flex-row w-full
+            mt-4
+            justify-between items-baseline align-middle
+            border-b-3 border-black"
+        >
+
+            <span className="flex flex-row justify-start">
+                <span className="px-2"><a href="/">Home</a></span>
+                <span className="pr-2"><a href="/generator">Generator</a></span>
+                <span><a href="/spotlight">Spotlight</a></span>
+            </span>
+
+            <span className="text-center">
+                <span className="text-xl font-bold">
+                    Songsaurus
+                </span>, powered by Spotify
+            </span>
+
+            <span className="pr-2"><Link to="/acct">Account</Link></span>
+
+        </div>
     );
 }

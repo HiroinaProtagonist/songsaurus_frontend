@@ -9,7 +9,6 @@ import {
 
 import type {Route} from "./+types/root";
 import "./app.css";
-import {Container} from "@mui/material";
 import {FooterBar} from "~/components/FooterBar";
 
 export const links: Route.LinksFunction = () => [
@@ -39,9 +38,12 @@ export function Layout({children}: { children: React.ReactNode }) {
             <Links/>
             <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
         </head>
-        <body className="flex flex-col justify-between h-screen border-y-0 border-thick border-blue-600 mx-16 mb-4">
+        <body className="flex flex-col justify-between h-screen
+            border-y-0 border-thick border-blue-600
+            mx-4 mb-4"
+        >
         {children}
-        <FooterBar/>
+        {/*<FooterBar/>*/}
         <ScrollRestoration/>
         <Scripts/>
         </body>

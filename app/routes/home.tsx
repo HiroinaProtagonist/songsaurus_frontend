@@ -4,6 +4,7 @@ import {Box, Grid, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {useState} from "react";
 import {Search} from "~/layouts/Search";
+import {FooterBar} from "~/components/FooterBar";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -23,22 +24,17 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
     const { clouds } = loaderData;
 
     return (
-        <Box sx={{flexGrow: 1}} className="justify-between">
-            <TitleBar/>
-            <Stack direction="column" className="grow border-0 border-orange-400">
-                <Grid container spacing={0}>
-                    <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
-                        <div className="text-center border-b-4 border-black">
-                            <span className="text-xl">Songsaurus</span>, powered by Spotify
-                        </div>
-                    </Grid>
-                    <Grid size={{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}}>
-                        <div className="border-b-0 border-black">
-                            <Search clouds={clouds}/>
-                        </div>
-                    </Grid>
-                </Grid>
-            </Stack>
-        </Box>
+        <>
+            <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
+                <Stack direction="column" className="p-2 grow border-0 border-orange-400">
+                    <TitleBar/>
+                    <div className="border-b-0 border-black">
+                        <Search clouds={clouds}/>
+                    </div>
+                </Stack>
+                <FooterBar/>
+            </Box>
+
+        </>
     )
 }
