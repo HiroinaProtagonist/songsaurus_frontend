@@ -14,20 +14,28 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/generator": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/";
+    page: "/" | "/generator";
   };
   "routes/home.tsx": {
     id: "routes/home";
     page: "/";
+  };
+  "routes/generator.tsx": {
+    id: "routes/generator";
+    page: "/generator";
   };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "routes/home": typeof import("./app/routes/home.tsx");
+  "routes/generator": typeof import("./app/routes/generator.tsx");
 };

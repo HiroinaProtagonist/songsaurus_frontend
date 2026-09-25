@@ -3,15 +3,8 @@ import {TitleBar} from "~/components/TitleBar";
 import {Box, Grid, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {useState} from "react";
-import {Search} from "~/layouts/Search";
+import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/FooterBar";
-
-export function meta({}: Route.MetaArgs) {
-    return [
-        {title: "songsaurus"},
-        {name: "description", content: "Search Spotify by word association"},
-    ];
-}
 
 export async function clientLoader() {
     const clouds:CloudRecord[] = await getClouds();

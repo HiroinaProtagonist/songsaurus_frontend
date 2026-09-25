@@ -1,29 +1,33 @@
 import {Link} from "react-router";
+import {HideableMenuBar} from "~/components/HideableMenuBar";
 
 export function TitleBar() {
     //TODO activate account, change link
 
+    const links = [
+        {"name": "Generator", "link": "/generator"},
+        {"name": "Spotlight", "link": "/spotlight"},
+        {"name": "Forums", "link": "/forums"},
+        {"name": "Account", "link":"/account"}
+    ]
+
     return (
-        <div id="top" className="flex flex-row w-full
-            mt-4
-            justify-between items-baseline align-middle
-            border-b-3 border-black"
-        >
-
-            <span className="flex flex-row justify-start">
-                <span className="px-2"><a href="/">Home</a></span>
-                <span className="pr-2"><a href="/generator">Generator</a></span>
-                <span><a href="/spotlight">Spotlight</a></span>
-            </span>
-
-            <span className="text-center">
+        <>
+            <div className="text-center pb-2">
                 <span className="text-xl font-bold">
                     Songsaurus
                 </span>, powered by Spotify
-            </span>
+            </div>
 
-            <span className="pr-2"><Link to="/acct">Account</Link></span>
+            <div id="top" className="flex flex-row w-full
+                mt-4
+                justify-between items-baseline align-middle
+                border-b-3 border-black"
+            >
+                <span className="px-2 w-1/4 border-0 border-emerald-200"><a href="/">Home</a></span>
 
-        </div>
+                <HideableMenuBar links={links}/>
+            </div>
+        </>
     );
 }

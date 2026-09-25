@@ -165,7 +165,7 @@ export async function exportCloudsToString() {
 //
 export function stringToWordCloudArray(elementsString:string) {
     elementsString = elementsString.substring(0, elementsString.length-1);
-    console.log('1' + elementsString);
+    // console.log('1' + elementsString);
 
     let elements = elementsString.split(",");
 
@@ -186,7 +186,7 @@ export function stringToWordCloudArray(elementsString:string) {
 
 export function stringToStringArray(elementsString:string) {
     elementsString = elementsString.substring(0, elementsString.length-1);
-    console.log('1' + elementsString);
+    // console.log('1' + elementsString);
 
     let elements = elementsString.split(",");
 
@@ -201,19 +201,3 @@ export function stringToStringArray(elementsString:string) {
 
     return words;
 }
-
-
-
-// //multiply all values by the same amount so that the smallest value has 4 figures
-// export function multiplier(cloudArray:reactWordCloud[]) {
-//     elementsString.substring(0, elementsString.length-2);
-//     console.log('2' + elementsString);
-//
-//     let elements = elementsString.split(",");
-//
-//     let wordCloudElements:ElementType[] = [];
-//     for (const e of elements) {
-//         let elem = {word: e.split(":")[0], freq: e.split(":")[1]};
-//         wordCloudElements.push(elem);
-//     }
-// }

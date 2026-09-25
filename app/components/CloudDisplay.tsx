@@ -18,13 +18,14 @@ export function CloudDisplay({loaded, cloud}) {
     return (
         <>
             {cloud &&
-                <div className="pl-4 pr-2 pb-1 mt-0.5">
+                <div className="pl-4 pr-2 pb-1 mt-0.5 min-w-1/4 min-h-1/4">
                 <div className="flex flex-row justify-start">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
                             {cloud.map((c, i) =>
                                 <EditCloudWordTag cloud={cloud} word={c} key={i} editCloud={editCloud} loaded={loaded}/>
                             )}
+
                         </Grid>
                     </Box>
 
