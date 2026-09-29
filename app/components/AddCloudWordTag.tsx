@@ -3,9 +3,10 @@ import {Link} from "react-router";
 import {GrCheckmark} from "react-icons/gr";
 import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
-import {FaPlus} from "react-icons/fa";
+import {FaPlus, FaPlusCircle} from "react-icons/fa";
 
-export function AddCloudWordTag({word}) {
+export function AddCloudWordTag({word, explicit}) {
+    console.log(`Name: ${word}`);
     const [cloudWord, setCloudWord] = useState<string>(word);
     return (
         <Box sx={{
@@ -31,7 +32,7 @@ export function AddCloudWordTag({word}) {
                             e.preventDefault();
                             console.log(`Clicked add: ${cloudWord}`)
                     }}>
-                        <FaPlus />
+                        <FaPlusCircle />
                     </button>
                 </label>
             </Paper>

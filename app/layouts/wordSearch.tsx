@@ -12,6 +12,8 @@ export function WordSearch({clouds}: any) {
     const [cloud, setCloud] = useState<any>();
     const [word, setWord] = useState<any>();
 
+    // console.log(`Results: ${JSON.stringify(results)}`);
+
     return (
         <Grid container spacing={1} className="border-0 border-pink-700">
             <Stack direction="row" spacing={0} className="shrink mt-6 border-0 border-green-700">

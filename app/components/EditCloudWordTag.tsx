@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {GrCheckmark} from "react-icons/gr";
 import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
+import {FaCheck, FaMinus, FaMinusCircle} from "react-icons/fa";
 
 export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
     // console.log(`Tag: ${cloud}; Word: ${word}`);
@@ -40,7 +41,7 @@ export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
                                     e.preventDefault();
                                     console.log(`Clicked edit: ${cloudWord}`)
                             }}>
-                                <GrCheckmark />
+                                <FaCheck />
                             </button>
                             <button
                                 className="pl-2 mt-1"
@@ -48,7 +49,7 @@ export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
                                     e.preventDefault();
                                     console.log(`Clicked delete: ${cloudWord}`);
                             }}>
-                                <MdOutlineDeleteForever />
+                                <FaMinusCircle />
                             </button>
                         </label>
                     </>}

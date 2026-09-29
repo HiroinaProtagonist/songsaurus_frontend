@@ -1,8 +1,7 @@
 import type {Route} from "./+types/home";
 import {TitleBar} from "~/components/TitleBar";
-import {Box, Grid, Stack} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
-import {useState} from "react";
 import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/FooterBar";
 
@@ -27,7 +26,6 @@ export default function Home({ loaderData, }:Route.ComponentProps) {
                 </Stack>
                 <FooterBar/>
             </Box>
-
         </>
     )
 }

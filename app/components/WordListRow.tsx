@@ -3,22 +3,16 @@ import {Box, Grid, Stack} from "@mui/material";
 import {EmbedTrackCard} from "~/components/EmbedTrackCard";
 import {AddCloudWordTag} from "~/components/AddCloudWordTag";
 
-export function WordListRow({tracks}) {
-    // console.log(`Tracks in songlistrow: ${JSON.stringify(tracks)}`);
+export function WordListRow({words}) {
+    console.log(`WordListRow payload: ${JSON.stringify(words)}`);
 
     //TODO add grid sizing
     return (
-        <>
-            <Grid container spacing={1} className="pl-2 border-0 border-purple-400">
-
-                {tracks &&
-                    tracks.items
-                        .map((w) =>
-                        <AddCloudWordTag word={w} key={w.id}/>
-                    )}
-
-            </Grid>
-        </>
+        <Grid container spacing={1} className="pl-2 border-0 border-purple-400">
+            {words &&
+                words.map((w) =>
+                    <AddCloudWordTag word={w.name} explicit={w.explicit} key={w.id}/>
+                )}
+        </Grid>
     );
 }
-
