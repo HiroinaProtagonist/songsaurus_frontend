@@ -147,7 +147,6 @@ dist
 
 /build/
 
-dist
 dist-ssr
 *.local
 
@@ -166,7 +165,5 @@ server/node_modules
 server/.idea
 client/node_modules
 node_modules
-
-.idea
 
 /*.env
