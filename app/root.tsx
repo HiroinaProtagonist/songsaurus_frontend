@@ -9,7 +9,7 @@ import {
 
 import type {Route} from "./+types/root";
 import "./app.css";
-import {FooterBar} from "~/components/FooterBar";
+import {FooterBar} from "~/components/page/FooterBar";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 
 export function meta({}: Route.MetaArgs) {

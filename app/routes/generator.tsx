@@ -1,9 +1,9 @@
-import {TitleBar} from "~/components/TitleBar";
+import {TitleBar} from "~/components/page/TitleBar";
 import {Box, Grid, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {useState} from "react";
 import {Search} from "~/layouts/search";
-import {FooterBar} from "~/components/FooterBar";
+import {FooterBar} from "~/components/page/FooterBar";
 import type {Route} from "../../.react-router/types/app/routes/+types/home";
 import {WordSearch} from "~/layouts/wordSearch";
 

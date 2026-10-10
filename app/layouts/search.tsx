@@ -1,9 +1,9 @@
-import {CloudSelector} from "~/components/CloudSelector";
+import {CloudSelector} from "~/components/search/CloudSelector";
 import {useEffect, useState} from "react";
 import {Box, Grid, Stack} from "@mui/material";
 import {Results} from "~/components/Results";
 import { sample } from "~/data/sample_tracks";
-import {CloudDisplay} from "~/components/CloudDisplay";
+import {CloudDisplay} from "~/components/common/CloudDisplay";
 
 export function Search({clouds}: any) {
 

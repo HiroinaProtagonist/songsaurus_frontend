@@ -1,12 +1,15 @@
 import type {Route} from "./+types/home";
-import {TitleBar} from "~/components/TitleBar";
+import {TitleBar} from "~/components/page/TitleBar";
 import {Box, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {Search} from "~/layouts/search";
-import {FooterBar} from "~/components/FooterBar";
+import {FooterBar} from "~/components/page/FooterBar";
+import {getDBClouds} from "~/utils/supabase";
 
 export async function clientLoader() {
-    const clouds:CloudRecord[] = await getClouds();
+    // const clouds:CloudRecord[] = await getClouds();
+
+    const clouds:CloudRecord[] = await getDBClouds();
 
     // console.log(clouds);
     return { clouds };

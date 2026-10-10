@@ -6,7 +6,7 @@ import {
     stringToStringArray
 } from "~/data/cloud_data";
 import {useRef, useState} from "react";
-import {sample, words} from "../data/sample_words";
+import {sample, words} from "../../data/sample_words";
 import axios from "axios";
 
 // import type {Words} from "~/model/words";
@@ -42,19 +42,18 @@ export function CloudGenerator({
     const getWords =
         async (explicit: boolean, limit: string, words: string[]) => {
             console.log(`Searching for tracks for cloud: ${JSON.stringify(cloud)}`);
-            //     axios
-            //         .get<Words[]>(`/thesaurus/multi/${limit}/${words}`)
-            //         // .get<Game[]>(`/games/${cloud}/${limit}`)
-            //         .then((res) => {
-            //             setResults(res.data);
-            //             setLoaded(true);
-            //             setError("");
-            //             // console.log(`Results from api: ${results}`);
-            //         })
-            //         .catch((err) => {
-            //             setError(err.message);
-            //             setLoaded(true);
-            //         });
+                axios
+                    .get<[]>(`/thesaurus/multi/${limit}/${words}`)
+                    .then((res) => {
+                        setResults(res.data);
+                        setLoaded(true);
+                        setError("");
+                        // console.log(`Results from api: ${results}`);
+                    })
+                    .catch((err) => {
+                        setError(err.message);
+                        setLoaded(true);
+                    });
         };
 
     return (
