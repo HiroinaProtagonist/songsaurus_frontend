@@ -3,9 +3,9 @@ import {useState} from "react";
 import {Box, Grid} from "@mui/material";
 import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 
-export function CloudDisplay({loaded, cloud}) {
+export function CloudDisplay({loaded, cloud_id, cloud, clouds}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
-    // console.log("CloudDisplay: " + JSON.stringify(cloud) + `; EditCloud: ${editCloud}`);
+    // console.log(`Clouds: ${{clouds}[0]}; CloudDisplay: ${cloud_id}; EditCloud: ${editCloud}`);
 
     function doDeleteCloud(cloud) {
          console.log("Called delete");
@@ -22,8 +22,9 @@ export function CloudDisplay({loaded, cloud}) {
                 <div className="flex flex-row justify-start">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
-                            {cloud.map((c, i) =>
-                                <EditCloudWordTag cloud={cloud} word={c} key={i} editCloud={editCloud} loaded={loaded}/>
+                            {cloud.words.map((c, i) =>
+                                <EditCloudWordTag cloud_id={cloud_id} word={c.name} key={c.word_id}
+                                                  editCloud={editCloud} loaded={loaded}/>
                             )}
 
                         </Grid>

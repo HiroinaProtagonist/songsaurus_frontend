@@ -12,13 +12,16 @@ import axios from "axios";
 // import type {Words} from "~/model/words";
 
 export function CloudGenerator({
-                                   setLoaded,
-                                   clouds,
-                                   cloud, setCloud,
-                                   word, setWord,
-                                   explicit, setExplicit,
-                                   setResults
-                               }: any) {
+    setLoaded,
+    clouds,
+    cloud, setCloud,
+    cloud_id, setCloudId,
+    word, setWord,
+    explicit, setExplicit,
+    setResults
+}: any) {
+
+    const LIMIT: string = "10";
 
     const explicitCheckRef = useRef(null);
     const typesCheckRef = useRef(null);
@@ -30,7 +33,7 @@ export function CloudGenerator({
     const [newCloudName, setNewCloudName] = useState<string>("");
 
     const [error, setError] = useState<string>();
-    const LIMIT: string = "10";
+
 
     function getSampleWords(explicit: boolean, word: string[]) {
         // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
@@ -40,21 +43,26 @@ export function CloudGenerator({
     }
 
     const getWords =
-        async (explicit: boolean, limit: string, words: string[]) => {
-            console.log(`Searching for tracks for cloud: ${JSON.stringify(cloud)}`);
-                axios
-                    .get<[]>(`/thesaurus/multi/${limit}/${words}`)
-                    .then((res) => {
-                        setResults(res.data);
-                        setLoaded(true);
-                        setError("");
-                        // console.log(`Results from api: ${results}`);
-                    })
-                    .catch((err) => {
-                        setError(err.message);
-                        setLoaded(true);
-                    });
-        };
+        async (explicit:boolean, limit:string, word:string) => {
+        //TODO check mock models against current live
+
+        // const searchArray = word.map(w => w.name)
+
+        console.log(`Searching for tracks for cloud gen: ${JSON.stringify(word)}`);
+
+        axios
+            .get<[]>(`/wordsaurus/combi/${word}`)
+            .then((res) => {
+                setResults(res.data);
+                setLoaded(true);
+                setError("");
+                console.log(`Results from api: ${JSON.stringify(res.data)}`);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoaded(true);
+            });
+    };
 
     return (
         <div className="p-3 border-0 border-purple-600">
@@ -64,8 +72,8 @@ export function CloudGenerator({
                     <input type="text" id="word_search" name="word_search"
                            className="pl-1 ml-2 mb-3 border border-black w-34.75"
                            onChange={(e) => {
-                               e.preventDefault()
-                               setWord(e.target.value)
+                               e.preventDefault();
+                               setWord(e.target.value);
                            }}
                     />
                 </div>
@@ -73,15 +81,16 @@ export function CloudGenerator({
                     <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
                     <select name="cloudSelect" id="cloudSelect"
                             className="ml-2 px-1 border border-black"
+                            defaultValue='default'
                             onChange={e => {
-                                setCloud(stringToStringArray(e.target.value));
+                                setCloudId(e.target.value);
                                 setLoaded(false);
                             }}
                     >
-                        <option value='' disabled={true} selected key='choose_cloud'>Choose cloud</option>
+                        <option value='default' disabled={true} key='choose_cloud'>Choose cloud</option>
                         <option value={"new_cloudd"} key={"new_cloud"}>Add new cloud</option>
-                        {clouds.map((cloud: CloudRecord) =>
-                            <option value={cloud.elements} key={cloud.id}>{cloud.title}</option>
+                        {clouds.map((cloud) =>
+                            <option value={cloud.cloud_id} key={cloud.cloud_id}>{cloud.title}</option>
                         )}
                     </select>
                 </div>
@@ -169,6 +178,7 @@ export function CloudGenerator({
                         onClick={e => {
                             e.preventDefault();
                             getSampleWords(explicit, word);
+                            // getWords(explicit, LIMIT, word)
                         }}>Get words
                 </button>
             </form>

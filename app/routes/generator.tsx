@@ -6,16 +6,25 @@ import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/page/FooterBar";
 import type {Route} from "../../.react-router/types/app/routes/+types/home";
 import {WordSearch} from "~/layouts/wordSearch";
+import {getDBClouds, getWords} from "~/utils/supabase";
 
 export async function clientLoader() {
-    const clouds:CloudRecord[] = await getClouds();
+    //TODO add feature flag to switch between mock and live data
+    // const clouds:CloudRecord[] = await getClouds();
 
-    // console.log(clouds);
+    const clouds = await getDBClouds();
+    // const words = await getWords();
+
+    // console.log(JSON.stringify(clouds));
+    // return { clouds, words };
+
     return { clouds };
 }
 
 export default function Generator({ loaderData, }:Route.ComponentProps) {
     const { clouds } = loaderData;
+
+    // console.log(`Clouds: ${JSON.stringify(clouds)}`);
 
     return (
         <>

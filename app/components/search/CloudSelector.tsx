@@ -12,30 +12,41 @@ import type {Game} from "~/model/game";
 import type {Tracks} from "~/model/tracks";
 import {ResultToTracks} from "~/data/ItemToTrack";
 
+import type {Route} from "../../routes/+types/home";
+
 export function CloudSelector({setLoaded,
-                               clouds,
-                               cloud, setCloud,
-                               explicit, setExplicit,
-                               setResults
-                              }:any){
+    clouds,
+    cloud, setCloud,
+    cloud_id, setCloudId,
+    explicit, setExplicit,
+    setResults
+  }:any
+  // ,{loaderData}: Route.ComponentProps
+){
 
     const explicitCheckRef = useRef(null);
     const [error, setError] = useState<string>();
     const LIMIT:string = "10";
 
     // console.log(`Explicit initial: ${explicit}`);
+    // console.log(`Selector clouds: ${JSON.stringify(clouds)}`);
+    // console.log(clouds.filter(cloud => cloud.cloud_id === cloud_id));
 
-    function getSampleTracks(explicit:boolean, cloud:string) {
-        console.log(`Load sample for cloud: ${cloud} with explicit: ${explicit}`)
+    function getSampleTracks(explicit:boolean, cloud) {
+        console.log(`Load sample for cloud: ${cloud.words} with explicit: ${explicit}`)
         setResults(sample);
         setLoaded(true);
     }
 
     const getTracks =
-        async (explicit:boolean, limit:string, cloud:string[]) => {
-        console.log(`Searching for tracks for cloud: ${JSON.stringify(cloud)}`);
+        async (explicit:boolean, limit:string, cloud) => {
+
+        //TODO modify mock data to reflect updated live
+        const searchArray = cloud.words.map(c => c.name);
+        console.log(`Searching for tracks for cloud select: ${JSON.stringify(searchArray)}`);
+
         axios
-            .get<Tracks[]>(`/songsaurus/multi/${limit}/${cloud}`)
+            .get<Tracks[]>(`/songsaurus/multi/${limit}/${searchArray}`)
             // .get<Game[]>(`/games/${cloud}/${limit}`)
             .then((res) => {
                 setResults(res.data);
@@ -55,15 +66,18 @@ export function CloudSelector({setLoaded,
                 <span className="border-0">
                     <label htmlFor="cloudSelect" className="pl-2">Cloud:</label>
                     <select name="cloudSelect" id="cloudSelect"
+                        defaultValue='default'
                         className="ml-2 px-1 border border-black"
+
                         onChange={e => {
-                            setCloud(stringToStringArray(e.target.value));
+                            console.log(`Value: ${e.target.value}`)
+                            setCloudId(e.target.value);
                             setLoaded(false);
                         }}
                     >
-                        <option value='' disabled={true} selected key='0'>Choose cloud</option>
-                        {clouds.map((cloud:CloudRecord) =>
-                            <option value={cloud.elements} key={cloud.id} >{cloud.title}</option>
+                        <option value='default' disabled={true} key='0'>Choose cloud</option>
+                        {clouds.map((cloud) =>
+                            <option value={cloud.cloud_id} key={cloud.cloud_id} >{cloud.title}</option>
                         )}
                     </select>
                 </span>
@@ -83,8 +97,11 @@ export function CloudSelector({setLoaded,
                 <button className="px-1 mt-4 ml-28 border border-black w-fit"
                     onClick={e => {
                         e.preventDefault();
-                        getSampleTracks(explicit, cloud);
-                        // getTracks(explicit, LIMIT, cloud);
+                        console.log(`Cloud for tracks: ${cloud === undefined}`);
+                        // getSampleTracks(explicit, cloud);
+
+                        getTracks(explicit, LIMIT, cloud);
+
                         // setLoaded(true);
                 }}>Get songs</button>
             </form>

@@ -5,7 +5,7 @@ import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
 import {FaCheck, FaMinus, FaMinusCircle} from "react-icons/fa";
 
-export function EditCloudWordTag({word, cloud, editCloud, loaded}) {
+export function EditCloudWordTag({word, cloud_id, editCloud, loaded}) {
     // console.log(`Tag: ${cloud}; Word: ${word}`);
 
     const [cloudWord, setCloudWord] = useState<string>(word);

@@ -4,14 +4,27 @@ import {Box, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/page/FooterBar";
-import {getDBClouds} from "~/utils/supabase";
+import {getCloudsWords, getDBClouds, getWords} from "~/utils/supabase";
+
+//TODO implement loader for preloading
+
+// export async function loader({}: Route.LoaderArgs) {
+//     const clouds = await getDBClouds();
+//     const words = await getWords();
+//
+//     return { clouds, words };
+// }
 
 export async function clientLoader() {
+    //TODO add feature flag to switch between mock and live data
     // const clouds:CloudRecord[] = await getClouds();
 
-    const clouds:CloudRecord[] = await getDBClouds();
+    const clouds = await getDBClouds();
+    // const words = await getWords();
 
-    // console.log(clouds);
+    // console.log(JSON.stringify(clouds));
+    // return { clouds, words };
+
     return { clouds };
 }
 

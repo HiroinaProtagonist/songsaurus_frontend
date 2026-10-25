@@ -29,6 +29,7 @@ const servedClouds = {
     records: {} as Record<string, CloudRecord>,
 
     async getAll(): Promise<CloudRecord[]> {
+        // console.log(`GetClouds: ${Object.keys(servedClouds.records)}`);
         return Object.keys(servedClouds.records)
             .map((key) => servedClouds.records[key])
             .sort(sortBy("-title"));
@@ -197,5 +198,6 @@ export function stringToStringArray(elementsString:string) {
         words.push(elem.word);
     }
 
+    // console.log(words);
     return words;
 }

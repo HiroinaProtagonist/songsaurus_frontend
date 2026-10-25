@@ -49,6 +49,9 @@ export const rhyming = () => (
     {
         "type": "rhyming",
         "items": [
+            // //TODO add id after updating db service
+            // {"word": "windlass", "freq":20, "score":150, "flags":"b", "dictionaryWord":true, "knownPronunciation": false, "explicit": false},
+            // {"word": "pass", "freq":25, "score":125, "flags":"bc", "dictionaryWord":true, "knownPronunciation": true, "explicit": false},
             {"id": 18, "name": "windlass", "explicit": true},
             {"id": 19, "name": "pass", "explicit": false},
         ]

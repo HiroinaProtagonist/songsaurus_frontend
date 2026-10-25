@@ -10,7 +10,14 @@ export function Search({clouds}: any) {
     const [loaded, setLoaded] = useState<Boolean>(false);
     const[explicit, setExplicit] = useState<boolean>(false);
     const [results, setResults] = useState<any>();
+    const [cloud_id, setCloudId] = useState<string>();
     const [cloud, setCloud] = useState<any>();
+
+    useEffect(()=> {
+        setCloud(() => clouds.filter(c => c.cloud_id === cloud_id)[0]);
+    }, [clouds, cloud, cloud_id]);
+
+    // console.log(`Search: ${JSON.stringify({cloud}.cloud)}`);
 
     return (
         <Grid container spacing={1} className="border-0 border-pink-700">
@@ -19,11 +26,12 @@ export function Search({clouds}: any) {
                     <CloudSelector loaded={loaded} setLoaded={setLoaded}
                                    clouds={clouds}
                                    cloud={cloud} setCloud={setCloud}
+                                   cloud_id={cloud_id} setCloudId={setCloudId}
                                    explicit={explicit} setExplicit={setExplicit}
                                    setResults={setResults} />
                 </Box>
                 <Box className="w-full grow shrink border-0 border-lime-400">
-                    <CloudDisplay loaded={loaded} cloud={cloud} />
+                    <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}/>
                 </Box>
             </Stack>
 

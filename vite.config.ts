@@ -13,6 +13,9 @@ export default defineConfig({
             '/songsaurus': {
                 target: 'http://localhost:9191/api/'
             },
+            '/wordsaurus': {
+                target: 'http://localhost:9192/api/'
+            }
         }
     }
 });
