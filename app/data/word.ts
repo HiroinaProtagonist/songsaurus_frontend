@@ -4,6 +4,6 @@ export type Word = {
     name: string,
     explicit: boolean,
     stems?: string[],
-    synonyms?: string[],
-    antonyms?: string[]
+    synonyms?: string[][],
+    antonyms?: string[][]
 }

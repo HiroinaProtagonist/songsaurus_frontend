@@ -17,7 +17,7 @@ export function WordSearch({clouds}: any) {
         setCloud(() => clouds.filter(c => c.cloud_id === cloud_id)[0]);
     }, [clouds, cloud, cloud_id]);
 
-    console.log(`Cloud: ${JSON.stringify(cloud)}`);
+    console.log(`Cloud: ${JSON.stringify(cloud)}; Cloud_id: ${cloud_id}`);
 
     // console.log(`Results: ${JSON.stringify(results)}`);
 

@@ -6,7 +6,7 @@ import {
     stringToStringArray
 } from "~/data/cloud_data";
 import {useRef, useState} from "react";
-import {sample, words} from "../../data/sample_words";
+import {combi_mock, sample, words} from "../../data/sample_words";
 import axios from "axios";
 
 // import type {Words} from "~/model/words";
@@ -34,12 +34,19 @@ export function CloudGenerator({
 
     const [error, setError] = useState<string>();
 
-
     function getSampleWords(explicit: boolean, word: string[]) {
         // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
-        setResults(sample);
+        setResults(sample());
         setLoaded(true);
-        console.log(`Words requested: ${sample}`)
+        console.log(`Words requested: ${sample()}`)
+    }
+
+    //Gets mock that reflects the object structure coming from upstream
+    function getMockWords(explicit: boolean, word: string[]) {
+        // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
+        setResults(combi_mock());
+        setLoaded(true);
+        console.log(`Words requested: ${combi_mock()}`)
     }
 
     const getWords =
@@ -88,19 +95,19 @@ export function CloudGenerator({
                             }}
                     >
                         <option value='default' disabled={true} key='choose_cloud'>Choose cloud</option>
-                        <option value={"new_cloudd"} key={"new_cloud"}>Add new cloud</option>
+                        <option value="new_cloud" key="new_cloud">Add new cloud</option>
                         {clouds.map((cloud) =>
                             <option value={cloud.cloud_id} key={cloud.cloud_id}>{cloud.title}</option>
                         )}
                     </select>
                 </div>
 
-                {!cloud || (cloud && cloud[0] != "new_cloud") &&
+                {(cloud_id !== "new_cloud") &&
                     <div className="mb-13.5">&nbsp;</div>
                 }
 
                 <div>
-                    {cloud && cloud[0] == "new_cloud" &&
+                    {cloud_id && cloud_id == "new_cloud" &&
                         <>
                             <div className="mt-0">
                                 <label htmlFor="new_cloud_input" className="pl-4">Name: </label>
@@ -177,8 +184,11 @@ export function CloudGenerator({
                 <button className="px-1 mt-2 ml-31.5 border border-black w-fit"
                         onClick={e => {
                             e.preventDefault();
-                            getSampleWords(explicit, word);
+
+                            getMockWords(explicit, word);
+                            // getSampleWords(explicit, word);
                             // getWords(explicit, LIMIT, word)
+
                         }}>Get words
                 </button>
             </form>
