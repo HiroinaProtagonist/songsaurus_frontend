@@ -38,7 +38,7 @@ export function WordResults({results}) {
                 <span>
                     {results.words[0].words.map((w) =>
                         <span className="mx-2">
-                            {
+                            {activeWordPos != `${w.metaId}_${w.partOfSpeech}` &&
                                 <button className="px-1 border w-fit"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -46,15 +46,37 @@ export function WordResults({results}) {
                                     }}
                                 >{w.metaId}: {w.partOfSpeech}</button>
                             }
+
+                            {activeWordPos == `${w.metaId}_${w.partOfSpeech}` &&
+                                <button className="px-1 w-fit font-bold border-x-3 border-t-3 border-red-500 border-b border-b-black"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setActiveWordPos(`${w.metaId}_${w.partOfSpeech}`);
+                                        }}
+                                >{w.metaId}: {w.partOfSpeech}</button>
+                            }
                         </span>
                     )}
+
                     <span className="mx-2">
-                        <button className="px-1 border w-fit"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setActiveWordPos("All_");
-                                }}
-                        >All</button>
+                        {activeWordPos != "All_" &&
+                            <button className="px-1 border w-fit"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setActiveWordPos("All_");
+                                    }}
+                            >All</button>
+                        }
+
+                        {activeWordPos == "All_" &&
+                            <button className="px-1 w-fit font-bold border-b border-b-black border-x-3 border-t-3 border-red-500"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setActiveWordPos("All_");
+                                    }}
+                            >All</button>
+                        }
+
                     </span>
                 </span>
             </div>
