@@ -38,7 +38,7 @@ export function CloudGenerator({
         // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
         setResults(sample());
         setLoaded(true);
-        console.log(`Words requested: ${sample()}`)
+        console.log(`Words requested: ${JSON.stringify(sample()[0])}`)
     }
 
     //Gets mock that reflects the object structure coming from upstream
@@ -46,7 +46,8 @@ export function CloudGenerator({
         // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
         setResults(combi_mock());
         setLoaded(true);
-        console.log(`Words requested: ${combi_mock()}`)
+
+        // console.log(`Words requested: ${JSON.stringify(combi_mock())}`)
     }
 
     const getWords =

@@ -5,7 +5,6 @@ import {CloudDisplay} from "~/components/common/CloudDisplay";
 import {CloudGenerator} from "~/components/generator/CloudGenerator";
 
 export function WordSearch({clouds}: any) {
-
     const [loaded, setLoaded] = useState<Boolean>(false);
     const[explicit, setExplicit] = useState<boolean>(false);
     const [results, setResults] = useState<any>();
@@ -17,8 +16,7 @@ export function WordSearch({clouds}: any) {
         setCloud(() => clouds.filter(c => c.cloud_id === cloud_id)[0]);
     }, [clouds, cloud, cloud_id]);
 
-    console.log(`Cloud: ${JSON.stringify(cloud)}; Cloud_id: ${cloud_id}`);
-
+    // console.log(`Cloud: ${JSON.stringify(cloud)}; Cloud_id: ${cloud_id}`);
     // console.log(`Results: ${JSON.stringify(results)}`);
 
     return (
