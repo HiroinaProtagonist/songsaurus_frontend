@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Box, Grid, Stack} from "@mui/material";
-import {WordResults} from "~/components/WordResults";
+import {WordResults} from "~/components/generator/WordResults";
 import {CloudDisplay} from "~/components/common/CloudDisplay";
 import {CloudGenerator} from "~/components/generator/CloudGenerator";
 

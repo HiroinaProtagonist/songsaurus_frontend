@@ -1,6 +1,6 @@
 import {Grid, Stack} from "@mui/material";
 import {Link} from "react-router";
-import {WordHeaderRowWord} from "~/components/WordHeaderRowWord";
+import {WordHeaderRowWord} from "~/components/generator/WordHeaderRowWord";
 import {useState} from "react";
 
 
@@ -13,7 +13,7 @@ export function WordHeaderRow({activeWordPos, activeWordType,
                                   headerWords
 }) {
     // console.log(`WordHeaderRow: ${wordType}`);
-    console.log(`Searchpos: ${searchPos}`);
+    // console.log(`Searchpos: ${searchPos}`);
 
     const [currentWordPos, setCurrentWordPos] = useState<string>();
     const wordPosHeader = `${searchWord} (${searchPos})`;

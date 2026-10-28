@@ -5,9 +5,11 @@ import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
 import {FaPlus, FaPlusCircle} from "react-icons/fa";
 
-export function AddCloudWordTag({word, explicit}) {
-    console.log(`Name: ${word}`);
+//TODO add back explicit, have to change backend first
+export function AddCloudWordTag({word}) {
+    // console.log(`Name: ${word}`);
     const [cloudWord, setCloudWord] = useState<string>(word);
+
     return (
         <Box sx={{
             display: 'flex',

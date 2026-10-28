@@ -10,7 +10,8 @@ export function WordHeaderRowWord({
                                       highlight, setHighlight,
                                       headerWord, setHeaderWord,
                                       searchWord, searchPos}) {
-    console.log(`headerWord: ${headerWord}; highlight: ${highlight}`);
+
+    // console.log(`headerWord: ${headerWord}; highlight: ${highlight}`);
 
     const [currentWordType, setCurrentWordType] = useState<string>();
 

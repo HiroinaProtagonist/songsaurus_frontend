@@ -1,5 +1,5 @@
 import {Link} from "react-router";
-import {HideableMenuBar} from "~/components/HideableMenuBar";
+import {HideableMenuBar} from "~/components/page/HideableMenuBar";
 
 export function TitleBar() {
     //TODO activate account, change link
