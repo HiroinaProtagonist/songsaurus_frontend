@@ -6,6 +6,8 @@ import {Link} from "react-router";
 import {Stack} from "@mui/material";
 import {RhymeListRow} from "~/components/generator/RhymeListRow";
 import {RhymeList} from "~/components/generator/RhymeList";
+import {DefinitionsList} from "~/components/generator/DefinitionsList";
+import {WordList} from "~/components/generator/WordList";
 
 export function WordResults({results}) {
 
@@ -47,7 +49,7 @@ export function WordResults({results}) {
             wordObject["metaId"] = word.metaId;
             wordObject["metaUuid"] = word.metaUuid;
             wordObject["partOfSpeech"] = word.partOfSpeech;
-            wordObject["shortDef"] = word.shortDef;
+            wordObject["shortDefs"] = word.shortDef;
             wordObject["synonyms"] = word.synonyms;
             wordObject["antonyms"] = word.antonyms;
             wordObject["stems"] = word.stems;
@@ -61,6 +63,7 @@ export function WordResults({results}) {
     }
 
     const [words, setWords] = useState<{}[]>(processWords());
+    console.log(`Words: ${JSON.stringify(words)}`);
 
     // console.log(`Processed words: ${JSON.stringify(words)}`);
     // console.log(`Current words: ${JSON.stringify(words[0][activeWordPos])}`);
@@ -130,27 +133,35 @@ export function WordResults({results}) {
                     headerWords={headerWords()}
                 />
 
+                {/*Definition - shortDefs*/}
+                {activeWordPos.length > 0 &&
+                    <DefinitionsList shortDefs={words[0][activeWordPos].shortDefs}
+                                 key={`drow_${words[0][activeWordPos].metaUuid}`}/>
+                }
+
                 {(highlight == "Synonyms" && activeWordPos.length > 0) &&
-                    <WordListRow words={words[0][activeWordPos].synonyms}
+                    <WordList words={words[0][activeWordPos].synonyms}
+                                 headerWord={highlight}
                                  key={`srow_${words[0][activeWordPos].metaUuid}`}/>
                 }
 
                 {(highlight == "Antonyms" && activeWordPos.length > 0) &&
-                    <WordListRow words={words[0][activeWordPos].antonyms}
+                    <WordList words={words[0][activeWordPos].antonyms}
+                                 headerWord={highlight}
                                  key={`arow_${words[0][activeWordPos].metaUuid}`}/>
                 }
 
                 {(highlight == "Rhyming" && activeWordPos.length > 0) &&
-                    <RhymeListRow rhymes={words[0][activeWordPos].rhymes}
-                                  allRhymes={words[0][activeWordPos].allRhymes}
-                                  key={`rrow_${words[0][activeWordPos].metaUuid}`}/>
-                }
-
-                {(highlight == "All" && activeWordPos.length > 0) &&
                     <RhymeList rhymes={words[0][activeWordPos].rhymes}
                                   allRhymes={words[0][activeWordPos].allRhymes}
                                   key={`rrow_${words[0][activeWordPos].metaUuid}`}/>
                 }
+
+                {/*{(highlight == "All" && activeWordPos.length > 0) &&*/}
+                {/*    <RhymeList rhymes={words[0][activeWordPos].rhymes}*/}
+                {/*                  allRhymes={words[0][activeWordPos].allRhymes}*/}
+                {/*                  key={`rrow_${words[0][activeWordPos].metaUuid}`}/>*/}
+                {/*}*/}
             </>
         </Stack>
     );
