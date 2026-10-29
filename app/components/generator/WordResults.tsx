@@ -12,13 +12,18 @@ import {WordList} from "~/components/generator/WordList";
 export function WordResults({results}) {
 
     const [activeWordPos, setActiveWordPos] = useState<string>("");
-    const [activeWordType, setActiveWordType] = useState<string>("Synonyms");
+    const [activeWordType, setActiveWordType] = useState<string>("");
     const [headerWord, setHeaderWord] = useState<string>("Synonyms");
-    const [highlight, setHighlight] = useState<string>("Synonyms");
+    const [highlight, setHighlight] = useState<string>("");
+
+    const SYNONYMS = "Synonyms";
+    const ANTONYMS = "Antonyms";
+    const RHYMES = "Rhymes";
+    const ALL = "All";
 
     const headerWords = () => {
         const makeHeader = [];
-        for (const r of ["Synonyms","Antonyms","Rhyming", "All"]) {    //TODO use Rhymes instead of Rhyming
+        for (const r of ["Synonyms","Antonyms","Rhymes"]) {     //, Todo reinstate all option at some point "All"]) {
             makeHeader.push(r);
         }
 
@@ -27,7 +32,7 @@ export function WordResults({results}) {
 
     // console.log(`WordResults: ${JSON.stringify(results)}`);
     // console.log(`WR: ${headerWords()}`);
-    // console.log(`Words: ${JSON.stringify(results.words[0].words)}`);
+    // console.log(`Wordresults words: ${JSON.stringify(results.words[0].words)}`);
     // console.log(`Rhymes: ${JSON.stringify(results.rhymes)}`);
 
     const getAllRhymes = (word) => {
@@ -63,16 +68,20 @@ export function WordResults({results}) {
     }
 
     const [words, setWords] = useState<{}[]>(processWords());
-    console.log(`Words: ${JSON.stringify(words)}`);
+    // console.log(`Words: ${JSON.stringify(words)}`);
 
     // console.log(`Processed words: ${JSON.stringify(words)}`);
     // console.log(`Current words: ${JSON.stringify(words[0][activeWordPos])}`);
     // console.log(`Activewordpos: ${activeWordPos}`);
 
     return (
-        <Stack spacing={1}>
-            <div className="flex flex-row justify-between">
-                <span>Searchterm: {results.search} - </span>
+        <Stack spacing={1} className="w-full">
+
+            {/*Search result terms*/}
+            <div className="flex flex-row justify-between w-full">
+                <span className="w-fit pr-1 mr-4">
+                    Search term: <span className="font-bold">{results.search}</span>
+                </span>
 
                 <span>
                     {results.words[0].words.map((w) =>
@@ -91,32 +100,38 @@ export function WordResults({results}) {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setActiveWordPos(`${w.metaId}_${w.partOfSpeech}`);
+
+                                            //TODO set synonyms active by default after clicking search term
+                                            // headerWord.length < 1 && setHeaderWord(SYNONYMS);
+                                            // highlight.length < 1 && setHighlight(SYNONYMS);
+                                            // activeWordType.length < 1 && setActiveWordType(SYNONYMS);
                                         }}
                                 >{w.metaId}: {w.partOfSpeech}</button>
                             }
                         </span>
                     )}
 
-                    <span className="mx-2">
-                        {activeWordPos != "All_" &&
-                            <button className="px-1 border w-fit"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setActiveWordPos("All_");
-                                    }}
-                            >All</button>
-                        }
+                    {/*TODO implement checkbox rather than radio button behavior for search result words*/}
+                    {/*<span className="mx-2">*/}
+                    {/*    {activeWordPos != "All_" &&*/}
+                    {/*        <button className="px-1 border w-fit"*/}
+                    {/*                onClick={(e) => {*/}
+                    {/*                    e.preventDefault();*/}
+                    {/*                    setActiveWordPos("All_");*/}
+                    {/*                }}*/}
+                    {/*        >All</button>*/}
+                    {/*    }*/}
 
-                        {activeWordPos == "All_" &&
-                            <button className="px-1 w-fit font-bold border-b border-b-black border-x-3 border-t-3 border-red-500"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setActiveWordPos("All_");
-                                    }}
-                            >All</button>
-                        }
+                    {/*    {activeWordPos == "All_" &&*/}
+                    {/*        <button className="px-1 w-fit font-bold border-b border-b-black border-x-3 border-t-3 border-red-500"*/}
+                    {/*                onClick={(e) => {*/}
+                    {/*                    e.preventDefault();*/}
+                    {/*                    setActiveWordPos("All_");*/}
+                    {/*                }}*/}
+                    {/*        >All</button>*/}
+                    {/*    }*/}
 
-                    </span>
+                    {/*</span>*/}
                 </span>
             </div>
 
@@ -139,19 +154,21 @@ export function WordResults({results}) {
                                  key={`drow_${words[0][activeWordPos].metaUuid}`}/>
                 }
 
-                {(highlight == "Synonyms" && activeWordPos.length > 0) &&
+                {/*wordtypes*/}
+                {/*TODO convert radio button behavior to checkbox behavior*/}
+                {(highlight == SYNONYMS && activeWordPos.length > 0) &&
                     <WordList words={words[0][activeWordPos].synonyms}
                                  headerWord={highlight}
                                  key={`srow_${words[0][activeWordPos].metaUuid}`}/>
                 }
 
-                {(highlight == "Antonyms" && activeWordPos.length > 0) &&
+                {(highlight == ANTONYMS && activeWordPos.length > 0) &&
                     <WordList words={words[0][activeWordPos].antonyms}
                                  headerWord={highlight}
                                  key={`arow_${words[0][activeWordPos].metaUuid}`}/>
                 }
 
-                {(highlight == "Rhyming" && activeWordPos.length > 0) &&
+                {(highlight == RHYMES && activeWordPos.length > 0) &&
                     <RhymeList rhymes={words[0][activeWordPos].rhymes}
                                   allRhymes={words[0][activeWordPos].allRhymes}
                                   key={`rrow_${words[0][activeWordPos].metaUuid}`}/>

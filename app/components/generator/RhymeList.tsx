@@ -4,7 +4,7 @@ import {RhymeListRow} from "~/components/generator/RhymeListRow";
 
 
 export function RhymeList({rhymes, allRhymes}) {
-    console.log(`RhymeList payload: ${JSON.stringify(Object.entries(allRhymes))}`);
+    // console.log(`RhymeList payload: ${JSON.stringify(Object.entries(allRhymes))}`);
 
     //TODO add grid sizing
     return (
@@ -13,7 +13,7 @@ export function RhymeList({rhymes, allRhymes}) {
                 Object.entries(allRhymes).map((entry) =>
                 entry[0] == "300" &&
                     <>
-                        <div className="w-full border-b border-black border-dashed mt-4">Perfect Rhymes: </div>
+                        <div className="w-1/3 border-b border-black border-dashed mt-4">Perfect Rhymes: </div>
                         <div className="border-b border-dashed border-b-red-500 w-full pb-1 mb-2">
                              <RhymeListRow row={entry[1]} />
                         </div>

@@ -3,7 +3,7 @@ import {AddCloudWordTag} from "~/components/AddCloudWordTag";
 import {WordListRow} from "~/components/generator/WordListRow";
 
 export function WordList({words, headerWord}) {
-    console.log(`WordList payload: ${JSON.stringify(words)}`);
+    // console.log(`WordList payload: ${JSON.stringify(words)}`);
 
     //TODO add grid sizing
     return (
@@ -17,7 +17,7 @@ export function WordList({words, headerWord}) {
             }
 
             {words.length < 1 && headerWord &&
-                <div className="mt-2">No {headerWord.toLowerCase()} available.</div>
+                <div className="mt-2 w-full">No {headerWord.toLowerCase()} available.</div>
             }
         </Grid>
     );

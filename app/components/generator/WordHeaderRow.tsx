@@ -24,8 +24,8 @@ export function WordHeaderRow({activeWordPos, activeWordType,
                         px-0 pt-4
                         border-b border-black">
 
-            {/*<div className="grow flex flex-row w-full justify-between">*/}
-                <span className="border-0 border-blue-500" id={searchWord}>
+            <div className="grow flex flex-row w-full justify-between">
+                <span className="w-fit pr-1 mr-4 border-0 border-blue-500" id={searchWord}>
                     <Link to={`#${searchWord}_${searchPos}`}>
                         {searchWord != undefined ? searchWord : ""}
                         {(searchPos != undefined && searchPos.length > 1) ? ` (${searchPos})` : ""}
@@ -50,7 +50,7 @@ export function WordHeaderRow({activeWordPos, activeWordType,
                     </span>
                     <span><Link to="#top">Top</Link></span>
                 </span>
-            {/*</div>*/}
+            </div>
 
         </Grid>
     );

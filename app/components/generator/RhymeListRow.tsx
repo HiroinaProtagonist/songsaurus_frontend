@@ -2,7 +2,7 @@ import {Grid} from "@mui/material";
 import {AddCloudWordTag} from "~/components/AddCloudWordTag";
 
 export function RhymeListRow({row}) {
-    console.log(`RhymeListRow payload: ${JSON.stringify(row)}`);
+    // console.log(`RhymeListRow payload: ${JSON.stringify(row)}`);
 
     //TODO add grid sizing
     return (
