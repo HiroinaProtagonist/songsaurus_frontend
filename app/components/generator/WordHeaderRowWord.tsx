@@ -21,7 +21,8 @@ export function WordHeaderRowWord({
 
     return (
         <>
-            <button className="" onClick={(e) => {
+            <button className="pb-0 mb-0 underline-offset-auto"
+                    onClick={(e) => {
                 e.preventDefault();
                 // setActiveWordPos(activeWordPos);
                 setActiveWordType(headerWord);
@@ -30,7 +31,10 @@ export function WordHeaderRowWord({
                 <Link to={makeLink()}>
                     {headerWord == highlight &&
 
-                        <span className="mr-2 px-1 font-bold border-x-3 border-t-3 border-red-500">
+                        <span className="mr-2 px-1 font-bold
+                            border-x-3 border-x-red-500
+                            border-t-3 border-t-red-500">
+
                             {headerWord}
                         </span>
                     }

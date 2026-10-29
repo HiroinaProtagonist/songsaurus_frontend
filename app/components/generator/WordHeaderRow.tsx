@@ -22,6 +22,8 @@ export function WordHeaderRow({activeWordPos, activeWordType,
         <Grid direction="row"
               className="grow flex flex-row justify-between w-full
                         px-0 pt-4
+                        pb-0 mb-0
+                        underline-offset-auto
                         border-b border-black">
 
             <div className="grow flex flex-row w-full justify-between">
@@ -48,7 +50,6 @@ export function WordHeaderRow({activeWordPos, activeWordType,
                             </span>
                         )}
                     </span>
-                    <span><Link to="#top">Top</Link></span>
                 </span>
             </div>
 
