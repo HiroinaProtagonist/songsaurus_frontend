@@ -36,16 +36,16 @@ export async function getDBClouds() {
 // }
 //
 // //Update the name of a cloud
-// export async function updateCloudName(cloud_id, name, setClouds) {
-//     const {data, error} = await supabase.from('clouds')
-//         .update({name: name}).eq('cloud_id', cloud_id).select();
-//
-//     if (error) {
-//         console.error(error);
-//     } else {
-//         setClouds(data);
-//     }
-// }
+export async function updateCloudName(cloud_id, name, setClouds) {
+    const {data, error} = await supabase.from('clouds')
+        .update({name: name}).eq('cloud_id', cloud_id).select();
+
+    if (error) {
+        console.error(error);
+    } else {
+        setClouds(data);
+    }
+}
 
 //Update cloud explicit flag to true
 export async function updateCloudExplicit(cloud_id, explicitFlag) {
@@ -97,16 +97,16 @@ export async function deleteCloud(cloudId, setClouds, clouds) {
 //     }
 // }
 //
-// //delete a word from a cloud
-// export async function deleteCloudWord(cloudId, wordId) {
-//     const {data, error} = await supabase.from('clouds').delete().eq('cloud_id', cloudId);
-//
-//     if (error) {
-//         console.error(error);
-//     } else {
-//         // TODO handle data
-//     }
-// }
+//delete a word from a cloud
+export async function deleteCloudWord(cloudId, wordId) {
+    const {data, error} = await supabase.from('clouds').delete().eq('cloud_id', cloudId);
+
+    if (error) {
+        console.error(error);
+    } else {
+        return data;
+    }
+}
 
 //Get all words from word table
 export async function getCloudsWords() {

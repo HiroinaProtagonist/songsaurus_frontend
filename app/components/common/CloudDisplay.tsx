@@ -2,15 +2,19 @@ import {MdCancel, MdDelete, MdEdit} from "react-icons/md";
 import {useState} from "react";
 import {Box, Grid} from "@mui/material";
 import {EditCloudWordTag} from "~/components/EditCloudWordTag";
+import {deleteCloud, deleteCloudWord} from "~/db/supabase";
 
-export function CloudDisplay({loaded, cloud_id, cloud, clouds}) {
+export function CloudDisplay({loaded, cloud_id, cloud, clouds, setClouds}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
     // console.log(`Clouds: ${{clouds}[0]}; CloudDisplay: ${cloud_id}; EditCloud: ${editCloud}`);
 
-    function doDeleteCloud(cloud) {
-         console.log("Called delete");
-    }
+    const doDeleteCloud =
+        async (cloud_id: string) => {
+            console.log(`Delete cloud cloud_id: ${cloud_id}`);
+            await deleteCloud(cloud_id, setClouds, clouds);
+        };
 
+    //update title of a cloud (explicit is set based on words added or removed
     function doEditCloud(cloud) {
         console.log("Called edit");
     }
