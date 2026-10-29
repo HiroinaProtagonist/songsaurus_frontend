@@ -4,7 +4,7 @@ import {Box, Stack} from "@mui/material";
 import {type CloudRecord, getClouds} from "~/data/cloud_data";
 import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/page/FooterBar";
-import {getCloudsWords, getDBClouds, getWords} from "~/utils/supabase";
+import {getCloudsWords, getDBClouds, getWords} from "~/db/supabase";
 
 //TODO implement loader for preloading
 

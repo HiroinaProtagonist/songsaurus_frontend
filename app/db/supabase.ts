@@ -53,16 +53,16 @@ export async function updateCloudExplicit(cloud_id, explicitFlag) {
         .update({explicit: explicitFlag}).eq('cloud_id', cloud_id).select();
 }
 
-// //Delete a cloud
-// export async function deleteCloud(cloudId, setClouds, clouds) {
-//     const {data, error} = await supabase.from('clouds').delete().eq('cloud_id', cloudId);
-//
-//     if (error) {
-//         console.error(error);
-//     } else {
-//         setClouds(clouds.filter(cloudId));
-//     }
-// }
+//Delete a cloud
+export async function deleteCloud(cloudId, setClouds, clouds) {
+    const {data, error} = await supabase.from('clouds').delete().eq('cloud_id', cloudId);
+
+    if (error) {
+        console.error(error);
+    } else {
+        setClouds(clouds.filter(cloudId));
+    }
+}
 
     //Get all words from word table
     export async function getWords() {

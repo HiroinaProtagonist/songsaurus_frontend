@@ -6,7 +6,7 @@ import {Search} from "~/layouts/search";
 import {FooterBar} from "~/components/page/FooterBar";
 import type {Route} from "../../.react-router/types/app/routes/+types/home";
 import {WordSearch} from "~/layouts/wordSearch";
-import {getDBClouds, getWords} from "~/utils/supabase";
+import {getDBClouds, getWords} from "~/db/supabase";
 
 export async function clientLoader() {
     //TODO add feature flag to switch between mock and live data
