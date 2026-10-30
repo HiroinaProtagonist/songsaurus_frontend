@@ -20,23 +20,35 @@ export function AddCloudWordTag({word}) {
                 // height: 20,
             },
         }} className="align-middle">
-            <Paper className="w-auto p-2 align-middle">
-                <input type="text" name="addWordTag" id="addWordTag"
-                    value={cloudWord} size={word.length}
-                    className="p-1 w-20 border-1 border-black w-[]"
-                    onChange={e => setCloudWord(e.target.value)}
-                />
+            <Paper className="w-fit p-2 align-middle">
+                {/*<input type="text" disabled={true} name="addWordTag" id="addWordTag"*/}
+                {/*    value={cloudWord.trim()}*/}
+                {/*       size={(cloudWord.length-1)}*/}
+                {/*    className="box-border pl-1 pt-1 pb-1 w-auto border-1 border-black"*/}
+                {/*    onChange={e => setCloudWord(e.target.value)}*/}
+                {/*/>*/}
 
-                <label>
+                <Paper elevation={0} className="align-middle
+                    border-0 border-black
+                    pl-1 pt-1 pb-1"
+                >
+
+                    <button>
+                        {cloudWord.trim()}
+                    </button>
+
+                {/*<label>*/}
                     <button
-                        className="pl-2 mt-4"
+                        className="align-top pl-2 pr-1 mt-1"
                         onClick={e => {
                             e.preventDefault();
                             console.log(`Clicked add: ${cloudWord}`)
                     }}>
                         <FaPlusCircle />
                     </button>
-                </label>
+                {/*</label>*/}
+                </Paper>
+
             </Paper>
         </Box>
     )

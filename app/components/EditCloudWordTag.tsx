@@ -37,14 +37,23 @@ export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
                     {!editCloud && loaded && <Link to={"#" + word}>{word}</Link>}
 
                     {editCloud &&
-                    <>
-                        <input type="text" disabled={true} name="editWordTag" id="editWordTag"
-                            value={cloudWord} size={word.length}
-                            className="w-fit pl-1 border-0 border-black"
-                            onChange={e => setCloudWord(e.target.value)}
-                        />
+                    // <>
+                    <Paper elevation={0} className="align-middle
+                    border-0 border-black
+                    pl-1 pt-1 pb-1"
+                    >
+                        <button>
+                            {cloudWord.trim()}
+                        </button>
 
-                        <label>
+
+                        {/*<input type="text" disabled={true} name="editWordTag" id="editWordTag"*/}
+                        {/*    value={cloudWord} size={word.length}*/}
+                        {/*    className="w-fit pl-1 border-0 border-black"*/}
+                        {/*    onChange={e => setCloudWord(e.target.value)}*/}
+                        {/*/>*/}
+
+                        {/*<label>*/}
                             {/*<button*/}
                             {/*    className="pl-2 mt-4"*/}
                             {/*    onClick={e => {*/}
@@ -54,7 +63,7 @@ export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
                             {/*    <FaCheck />*/}
                             {/*</button>*/}
                             <button
-                                className="pl-0 mt-1"
+                                className="align-top pl-2 pr-1 mt-1"
                                 onClick={e => {
                                     e.preventDefault();
                                     console.log(`Clicked delete: ${cloudWord}`);
@@ -62,8 +71,10 @@ export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
                             }}>
                                 <FaMinusCircle />
                             </button>
-                        </label>
-                    </>}
+                        {/*</label>*/}
+                    {/*</>}*/}
+                    </Paper>
+                    }
                 </Paper>
             </form>
 

@@ -78,13 +78,26 @@ export function CloudGenerator({
                 <div className="border-0">
                     <label htmlFor="word" className="pl-4">Word: </label>
                     <input type="text" id="word_search" name="word_search"
-                           className="pl-1 ml-2 mb-3 border border-black w-34.75"
+                           className="pl-1 ml-2 mb-1 border border-black w-34.75"
                            onChange={(e) => {
                                e.preventDefault();
                                setWord(e.target.value);
                            }}
                     />
                 </div>
+
+                <div className="mb-1 mt-1">
+                    <label className="ml-2 pl-2">Include explicit words</label>
+                    <input className="ml-2 pl-2" ref={explicitCheckRef} type="checkbox" id="explicit"
+                           name="explicit" defaultChecked={explicit}
+                           onChange={e => {
+                               e.stopPropagation();
+                               setExplicit(!explicit);
+                               // console.log(`Explicit: ${explicit}`);
+                           }}
+                    />
+                </div>
+
                 <div className="border-0">
                     <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
                     <select name="cloudSelect" id="cloudSelect"
@@ -103,9 +116,9 @@ export function CloudGenerator({
                     </select>
                 </div>
 
-                {(cloud_id !== "new_cloud") &&
-                    <div className="mb-13.5">&nbsp;</div>
-                }
+                {/*{(cloud_id !== "new_cloud") &&*/}
+                {/*    <div className="mb-13.5">&nbsp;</div>*/}
+                {/*}*/}
 
                 <div>
                     {cloud_id && cloud_id == "new_cloud" &&
@@ -131,56 +144,44 @@ export function CloudGenerator({
                         </>}
                 </div>
 
-                <div className="mb-4 mt-6">
-                    <label className="ml-2 pl-2">Include explicit words</label>
-                    <input className="ml-2 pl-2" ref={explicitCheckRef} type="checkbox" id="explicit"
-                           name="explicit" defaultChecked={explicit}
-                           onChange={e => {
-                               e.stopPropagation();
-                               setExplicit(!explicit);
-                               // console.log(`Explicit: ${explicit}`);
-                           }}
-                    />
-                </div>
+                {/*<div className="mb-4">*/}
+                {/*    <div>*/}
+                {/*        <label className="ml-2 pl-2">Type of words to include: </label>*/}
+                {/*    </div>*/}
 
-                <div className="mb-4">
-                    <div>
-                        <label className="ml-2 pl-2">Type of words to include: </label>
-                    </div>
+                {/*    <div>*/}
+                {/*        <label htmlFor="synonyms" className="ml-2 pl-2">Synonyms: </label>*/}
+                {/*        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"*/}
+                {/*               name="synonyms" defaultChecked={synonyms}*/}
+                {/*               onChange={e => {*/}
+                {/*                   e.stopPropagation();*/}
+                {/*                   setSynonyms(!synonyms);*/}
+                {/*               }}*/}
+                {/*        />*/}
+                {/*    </div>*/}
 
-                    <div>
-                        <label htmlFor="synonyms" className="ml-2 pl-2">Synonyms: </label>
-                        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"
-                               name="synonyms" defaultChecked={synonyms}
-                               onChange={e => {
-                                   e.stopPropagation();
-                                   setSynonyms(!synonyms);
-                               }}
-                        />
-                    </div>
+                {/*    <div>*/}
+                {/*        <label htmlFor="antonyms" className="ml-2 pl-2">Antonyms: </label>*/}
+                {/*        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"*/}
+                {/*               name="antonyms" defaultChecked={antonyms}*/}
+                {/*               onChange={e => {*/}
+                {/*                   e.stopPropagation();*/}
+                {/*                   setAntonyms(!antonyms);*/}
+                {/*               }}*/}
+                {/*        />*/}
+                {/*    </div>*/}
 
-                    <div>
-                        <label htmlFor="antonyms" className="ml-2 pl-2">Antonyms: </label>
-                        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"
-                               name="antonyms" defaultChecked={antonyms}
-                               onChange={e => {
-                                   e.stopPropagation();
-                                   setAntonyms(!antonyms);
-                               }}
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="rhyming" className="ml-2 pl-2">Rhyming Words: </label>
-                        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"
-                               name="rhyming" defaultChecked={rhyming}
-                               onChange={e => {
-                                   e.stopPropagation();
-                                   setRhyming(!rhyming);
-                               }}
-                        />
-                    </div>
-                </div>
+                {/*    <div>*/}
+                {/*        <label htmlFor="rhyming" className="ml-2 pl-2">Rhyming Words: </label>*/}
+                {/*        <input className="ml-2 pl-2" ref={typesCheckRef} type="checkbox" id="types"*/}
+                {/*               name="rhyming" defaultChecked={rhyming}*/}
+                {/*               onChange={e => {*/}
+                {/*                   e.stopPropagation();*/}
+                {/*                   setRhyming(!rhyming);*/}
+                {/*               }}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 <button className="px-1 mt-2 ml-31.5 border border-black w-fit"
                         onClick={e => {
