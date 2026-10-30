@@ -16,7 +16,7 @@ export function HideableMenuBar({links}) {
 
             {
                 <span>
-                    <button className="pr-1"
+                    <button className="align-middle pr-1"
                         onClick={e => setExpanded(!expanded)}>
                         <GiHamburgerMenu />
                     </button>

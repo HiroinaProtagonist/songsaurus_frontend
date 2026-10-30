@@ -4,14 +4,15 @@ import {Box, Grid} from "@mui/material";
 import {EditCloudWordTag} from "~/components/EditCloudWordTag";
 import {deleteCloud, deleteCloudWord} from "~/db/supabase";
 
-export function CloudDisplay({loaded, cloud_id, cloud, clouds, setClouds}) {
+export function CloudDisplay({loaded, cloud_id, cloud, clouds}) {
     const [editCloud, setEditCloud] = useState<Boolean>(false);
     // console.log(`Clouds: ${{clouds}[0]}; CloudDisplay: ${cloud_id}; EditCloud: ${editCloud}`);
+    // console.log(cloud != undefined ? cloud.words : "");
 
     const doDeleteCloud =
         async (cloud_id: string) => {
             console.log(`Delete cloud cloud_id: ${cloud_id}`);
-            await deleteCloud(cloud_id, setClouds, clouds);
+            // await deleteCloud(cloud_id, setClouds, clouds);
         };
 
     //update title of a cloud (explicit is set based on words added or removed
@@ -26,8 +27,8 @@ export function CloudDisplay({loaded, cloud_id, cloud, clouds, setClouds}) {
                 <div className="flex flex-row justify-start">
                     <Box>
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
-                            {cloud.words.map((c, i) =>
-                                <EditCloudWordTag cloud_id={cloud_id} word={c.name} key={c.word_id}
+                            {cloud.words.map((w, i) =>
+                                <EditCloudWordTag cloud_id={cloud_id} word={w.name} word_id={w.word_id} key={w.word_id}
                                                   editCloud={editCloud} loaded={loaded}/>
                             )}
 

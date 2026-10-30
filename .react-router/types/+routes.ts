@@ -17,12 +17,24 @@ type Pages = {
   "/generator": {
     params: {};
   };
+  "/login": {
+    params: {};
+  };
+  "/signup": {
+    params: {};
+  };
+  "/dashboard": {
+    params: {};
+  };
+  "/protected": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/generator";
+    page: "/" | "/generator" | "/login" | "/signup" | "/dashboard" | "/protected";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -32,10 +44,30 @@ type RouteFiles = {
     id: "routes/generator";
     page: "/generator";
   };
+  "routes/login.tsx": {
+    id: "routes/login";
+    page: "/login";
+  };
+  "routes/signup.tsx": {
+    id: "routes/signup";
+    page: "/signup";
+  };
+  "routes/dashboard.tsx": {
+    id: "routes/dashboard";
+    page: "/dashboard";
+  };
+  "routes/protected.tsx": {
+    id: "routes/protected";
+    page: "/protected";
+  };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "routes/home": typeof import("./app/routes/home.tsx");
   "routes/generator": typeof import("./app/routes/generator.tsx");
+  "routes/login": typeof import("./app/routes/login.tsx");
+  "routes/signup": typeof import("./app/routes/signup.tsx");
+  "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
+  "routes/protected": typeof import("./app/routes/protected.tsx");
 };

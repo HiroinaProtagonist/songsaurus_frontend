@@ -6,9 +6,9 @@ export function TitleBar() {
 
     const links = [
         {"name": "Generator", "link": "/generator"},
-        {"name": "Spotlight", "link": "/spotlight"},
-        {"name": "Forums", "link": "/forums"},
-        {"name": "Account", "link":"/account"}
+        // {"name": "Spotlight", "link": "/spotlight"},
+        // {"name": "Forums", "link": "/forums"},
+        // {"name": "Account", "link":"/account"}
     ]
 
     return (
@@ -24,8 +24,13 @@ export function TitleBar() {
                 justify-between items-baseline align-middle
                 border-b-3 border-black"
             >
-                <span className="px-2 w-1/4 border-0 border-emerald-200"><a href="/">Home</a></span>
+                <span className="px-2 w-fit border-0 border-emerald-200">
+                    <a href="/" className="pr-4">Home</a>
+                    <a href="/login"> Login </a>|<a href="/signup"> Signup </a>
 
+                    {/*TODO only show if logged in*/}
+                    <span>| <a href="/dashboard">Dashboard</a></span>
+                </span>
                 <HideableMenuBar links={links}/>
             </div>
         </>

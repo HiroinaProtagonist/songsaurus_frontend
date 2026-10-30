@@ -4,7 +4,7 @@ import {WordResults} from "~/components/generator/WordResults";
 import {CloudDisplay} from "~/components/common/CloudDisplay";
 import {CloudGenerator} from "~/components/generator/CloudGenerator";
 
-export function WordSearch({clouds}: any) {
+export function WordSearch({clouds, setClouds}: any) {
     const [loaded, setLoaded] = useState<Boolean>(false);
     const[explicit, setExplicit] = useState<boolean>(false);
     const [results, setResults] = useState<any>();
