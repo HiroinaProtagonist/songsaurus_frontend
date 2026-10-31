@@ -1,6 +1,7 @@
 import {TitleBar} from "~/components/page/TitleBar";
 import {Box, Stack} from "@mui/material";
 import {FooterBar} from "~/components/page/FooterBar";
+import {SocialLoginComponent} from "~/components/login/SocialLoginComponent";
 import {LoginComponent} from "~/components/login/LoginComponent";
 
 export default function Login() {

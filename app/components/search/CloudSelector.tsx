@@ -98,9 +98,9 @@ export function CloudSelector({setLoaded,
                     onClick={e => {
                         e.preventDefault();
                         console.log(`Cloud for tracks: ${cloud === undefined}`);
-                        // getSampleTracks(explicit, cloud);
+                        getSampleTracks(explicit, cloud);
 
-                        getTracks(explicit, LIMIT, cloud);
+                        // getTracks(explicit, LIMIT, cloud);
 
                         // setLoaded(true);
                 }}>Get songs</button>

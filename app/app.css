@@ -12,4 +12,9 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+
+  input {
+    border: 1px black solid;
+    padding-left: .25rem;
+  }
 }
