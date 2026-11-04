@@ -1,4 +1,4 @@
-import {SongListRow} from "~/components/SongListRow";
+import {SongListRow} from "~/components/misc/SongListRow";
 import {HeaderRow} from "~/components/common/HeaderRow";
 
 export function Results({results, explicit}) {

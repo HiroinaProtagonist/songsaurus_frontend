@@ -1,7 +1,7 @@
-import {TrackCard} from "~/components/TrackCard";
+import {TrackCard} from "~/components/misc/TrackCard";
 import {Box, Grid, Stack} from "@mui/material";
-import {EmbedTrackCard} from "~/components/EmbedTrackCard";
-import {AddCloudWordTag} from "~/components/AddCloudWordTag";
+import {EmbedTrackCard} from "~/components/misc/EmbedTrackCard";
+import {AddCloudWordTag} from "~/components/misc/AddCloudWordTag";
 
 export function WordListRow({row}) {
     // console.log(`WordListRow payload: ${JSON.stringify(row)}`);

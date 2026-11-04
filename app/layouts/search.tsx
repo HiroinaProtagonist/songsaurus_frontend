@@ -1,7 +1,7 @@
 import {CloudSelector} from "~/components/search/CloudSelector";
 import {useEffect, useState} from "react";
 import {Box, Grid, Stack} from "@mui/material";
-import {Results} from "~/components/Results";
+import {Results} from "~/components/misc/Results";
 import { sample } from "~/data/sample_tracks";
 import {CloudDisplay} from "~/components/common/CloudDisplay";
 

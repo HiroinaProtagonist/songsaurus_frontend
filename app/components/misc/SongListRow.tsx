@@ -1,6 +1,6 @@
-import {TrackCard} from "~/components/TrackCard";
+import {TrackCard} from "~/components/misc/TrackCard";
 import {Box, Grid, Stack} from "@mui/material";
-import {EmbedTrackCard} from "~/components/EmbedTrackCard";
+import {EmbedTrackCard} from "~/components/misc/EmbedTrackCard";
 
 export function SongListRow({tracks, explicit}) {
     // console.log(`Tracks in songlistrow: ${JSON.stringify(tracks)}`);

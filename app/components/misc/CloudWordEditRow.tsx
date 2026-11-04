@@ -1,4 +1,4 @@
-import {CloudWordEditButtons} from "~/components/CloudWordEditButtons";
+import {CloudWordEditButtons} from "~/components/misc/CloudWordEditButtons";
 import {useState} from "react";
 
 

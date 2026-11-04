@@ -1,5 +1,5 @@
 import {Divider, Grid, Stack} from "@mui/material";
-import {MusicResult} from "~/components/MusicResult";
+import {MusicResult} from "~/components/misc/MusicResult";
 
 export function ResultsPane({musicResData}:any) {
     return (

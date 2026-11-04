@@ -1,5 +1,5 @@
 import {Grid} from "@mui/material";
-import {AddCloudWordTag} from "~/components/AddCloudWordTag";
+import {AddCloudWordTag} from "~/components/misc/AddCloudWordTag";
 import {WordListRow} from "~/components/generator/WordListRow";
 
 export function WordList({words, headerWord}) {

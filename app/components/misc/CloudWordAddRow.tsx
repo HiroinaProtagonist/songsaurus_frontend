@@ -1,4 +1,4 @@
-import {CloudWordEditRow} from "~/components/CloudWordEditRow";
+import {CloudWordEditRow} from "~/components/misc/CloudWordEditRow";
 import {IoMdCheckmark} from "react-icons/io";
 import {useState} from "react";
 

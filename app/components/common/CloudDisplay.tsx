@@ -1,7 +1,7 @@
 import {MdCancel, MdDelete, MdEdit} from "react-icons/md";
 import {useState} from "react";
 import {Box, Grid} from "@mui/material";
-import {EditCloudWordTag} from "~/components/EditCloudWordTag";
+import {EditCloudWordTag} from "~/components/misc/EditCloudWordTag";
 import {deleteCloud, deleteCloudWord} from "~/db/supabase";
 
 export function CloudDisplay({loaded, cloud_id, cloud, clouds}) {

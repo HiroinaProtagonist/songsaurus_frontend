@@ -1,5 +1,5 @@
 import {Grid} from "@mui/material";
-import {AddCloudWordTag} from "~/components/AddCloudWordTag";
+import {AddCloudWordTag} from "~/components/misc/AddCloudWordTag";
 import {RhymeListRow} from "~/components/generator/RhymeListRow";
 
 

@@ -1,8 +1,8 @@
-import {CloudWordEditRow} from "~/components/CloudWordEditRow";
+import {CloudWordEditRow} from "~/components/misc/CloudWordEditRow";
 import {useState} from "react";
-import {CloudWordEditButtons} from "~/components/CloudWordEditButtons";
+import {CloudWordEditButtons} from "~/components/misc/CloudWordEditButtons";
 import {IoMdCheckmark} from "react-icons/io";
-import {CloudWordAddRow} from "~/components/CloudWordAddRow";
+import {CloudWordAddRow} from "~/components/misc/CloudWordAddRow";
 
 
 export function CloudWordEditInterface({cloud}) {
