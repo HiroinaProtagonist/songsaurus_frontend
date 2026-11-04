@@ -42,12 +42,12 @@ type RouteFiles = {
     id: "root";
     page: "/" | "/generator" | "/login" | "/signup" | "/forgot-password" | "/update-password" | "/dashboard" | "/protected";
   };
-  "routes/home.tsx": {
-    id: "routes/home";
+  "routes/search.tsx": {
+    id: "routes/search";
     page: "/";
   };
-  "routes/generator.tsx": {
-    id: "routes/generator";
+  "routes/wordSearch.tsx": {
+    id: "routes/wordSearch";
     page: "/generator";
   };
   "routes/login.tsx": {
@@ -78,8 +78,8 @@ type RouteFiles = {
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
-  "routes/home": typeof import("./app/routes/home.tsx");
-  "routes/generator": typeof import("./app/routes/generator.tsx");
+  "routes/search": typeof import("./app/routes/search.tsx");
+  "routes/wordSearch": typeof import("./app/routes/wordSearch.tsx");
   "routes/login": typeof import("./app/routes/login.tsx");
   "routes/signup": typeof import("./app/routes/signup.tsx");
   "routes/forgot": typeof import("./app/routes/forgot.tsx");

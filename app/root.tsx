@@ -2,7 +2,7 @@ import {
     isRouteErrorResponse,
     Links,
     Meta,
-    Outlet,
+    Outlet, redirect,
     Scripts,
     ScrollRestoration,
 } from "react-router";
@@ -10,7 +10,26 @@ import {
 import type {Route} from "./+types/root";
 import "./app.css";
 import {FooterBar} from "~/components/page/FooterBar";
-import {type CloudRecord, getClouds} from "~/data/cloud_data";
+import {Box, Stack} from "@mui/material";
+import {TitleBar} from "~/components/page/TitleBar";
+import {getDBClouds, supabase} from "~/db/supabase";
+import React, {createContext} from "react";
+
+export async function loader({ params }: Route.LoaderArgs) {
+    //TODO add feature flag to switch between mock and live data
+    // const clouds:CloudRecord[] = await getClouds();
+    const clouds = await getDBClouds();
+
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error) {
+        location.href = "/login";
+        throw redirect("/login");
+    } else {
+        const session = data.session;
+        return {session, clouds };
+    }
+}
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -59,8 +78,27 @@ export function Layout({children}: { children: React.ReactNode }) {
     );
 }
 
-export default function App() {
-    return <Outlet/>;
+export default function App({ loaderData, }:Route.ComponentProps) {
+    const { session, clouds } = loaderData;
+    const titleContext = createContext<{} | null>({session});
+    for(const key in titleContext){
+        console.log(`Titlecontext: ${titleContext}`);
+    }
+
+    return (
+        <>
+            <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
+                <Stack direction="column" className="p-2 grow border-0 border-orange-400">
+                    <TitleBar context={titleContext}/>
+                    <div className="border-b-0 border-black">
+                        <Outlet context={{session, clouds}}/>
+                        {/*<Search clouds={clouds}/>*/}
+                    </div>
+                </Stack>
+                <FooterBar/>
+            </Box>
+        </>
+    )
 }
 
 export function ErrorBoundary({error}: Route.ErrorBoundaryProps) {

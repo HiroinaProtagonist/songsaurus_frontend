@@ -1,21 +1,118 @@
-import {TitleBar} from "~/components/page/TitleBar";
-import {Box, Stack} from "@mui/material";
-import {FooterBar} from "~/components/page/FooterBar";
-import {SocialLoginComponent} from "~/components/login_old/SocialLoginComponent";
-import {SignupComponent} from "~/components/login_old/SignupComponent";
+    import { useState } from 'react';
+    import {Button, Card, CardContent, CardHeader} from "@mui/material";
+    import {supabase} from "~/db/supabase";
 
-export default function Signup() {
-    return (
-        <>
-            <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
-                <Stack direction="column" className="p-2 grow border-0 border-orange-400">
-                    <TitleBar/>
-                    <div className="border-b-0 border-black">
-                        <SignupComponent/>
-                    </div>
-                </Stack>
-                <FooterBar/>
-            </Box>
-        </>
-    )
-}
+    export default function Signup({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
+        const [email, setEmail] = useState('')
+        const [password, setPassword] = useState('')
+        const [repeatPassword, setRepeatPassword] = useState('')
+        const [error, setError] = useState<string | null>(null)
+        const [isLoading, setIsLoading] = useState(false)
+        const [success, setSuccess] = useState(false)
+
+        const handleSignUp = async (e: React.FormEvent) => {
+            e.preventDefault()
+            setError(null)
+
+            if (password !== repeatPassword) {
+                setError('Passwords do not match')
+                return
+            }
+            setIsLoading(true)
+
+            try {
+                const { error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                })
+                if (error) throw error
+                setSuccess(true)
+            } catch (error: unknown) {
+                setError(error instanceof Error ? error.message : 'An error occurred')
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        return (
+            <div className="flex flex-row justify-center mt-16 w-full" {...props}>
+                {success ? (
+                    <Card>
+                        <CardHeader>
+                            {/*<CardHeader className="font-medium text-lg tracking-normal">*/}
+                            {/*    Thank you for signing up!*/}
+                            {/*</CardHeader>*/}
+                            <div className="pt-4 px-4 font-medium text-center text-lg tracking-normal">
+                                Check your email to confirm
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                                You've successfully signed up. Please check your email to confirm your account
+                                before signing in.
+                            </p>
+                        </CardContent>
+                    </Card>
+                ) : (
+                    <Card>
+                        <CardHeader>
+                            <div className="font-medium text-lg tracking-normal">Sign up</div>
+                            <div>Create a new account</div>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleSignUp}>
+                                <div className="flex flex-col gap-6">
+                                    <div className="grid gap-2">
+                                        <label htmlFor="email">Email</label>
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            placeholder="m@example.com"
+                                            required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <div className="flex items-center">
+                                            <label htmlFor="password">Password</label>
+                                        </div>
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            required
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <div className="flex items-center">
+                                            <label htmlFor="repeat-password">Repeat Password</label>
+                                        </div>
+                                        <input
+                                            id="repeat-password"
+                                            type="password"
+                                            required
+                                            value={repeatPassword}
+                                            onChange={(e) => setRepeatPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    {error && <p className="text-sm text-red-500">{error}</p>}
+                                    <Button type="submit" className="w-full" disabled={isLoading}>
+                                        {isLoading ? 'Creating an account...' : 'Sign up'}
+                                    </Button>
+                                </div>
+                                <div className="mt-4 text-center text-sm">
+                                    Already have an account?{' '}
+                                    <a href="/login" className="underline underline-offset-4">
+                                        Sign in
+                                    </a>
+                                </div>
+                            </form>
+                        </CardContent>
+                    </Card>
+                )}
+            </div>
+        )
+    }
+

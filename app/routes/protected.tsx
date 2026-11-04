@@ -1,7 +1,7 @@
 import type {Route} from "./+types/home";
 import {TitleBar} from "~/components/page/TitleBar";
 import {Box, Stack} from "@mui/material";
-import {Search} from "~/layouts/search";
+import {Search} from "~/routes/search";
 import {FooterBar} from "~/components/page/FooterBar";
 import {getCloudsWords, getDBClouds, getWords} from "~/db/supabase";
 

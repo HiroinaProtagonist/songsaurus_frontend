@@ -9,7 +9,7 @@ export function HideableMenuBar({links}) {
     return (
         <span className="flex flex-row justify-start align-middle items-baseline pl-2">
             {expanded && links.map((l:{name: string, link:string}) =>
-                <span className="pr-2">
+                <span className="pr-2" key={l.name}>
                     <Link to={l.link}>{l.name}</Link>
                 </span>
             )}

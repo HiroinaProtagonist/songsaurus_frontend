@@ -119,3 +119,9 @@ export async function getCloudsWords() {
         return data;
     }
 }
+
+export async function signout(user) {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) { console.error(error.message); }
+}
