@@ -32,15 +32,12 @@ type Pages = {
   "/dashboard": {
     params: {};
   };
-  "/protected": {
-    params: {};
-  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/generator" | "/login" | "/signup" | "/forgot-password" | "/update-password" | "/dashboard" | "/protected";
+    page: "/" | "/generator" | "/login" | "/signup" | "/forgot-password" | "/update-password" | "/dashboard";
   };
   "routes/search.tsx": {
     id: "routes/search";
@@ -70,10 +67,6 @@ type RouteFiles = {
     id: "routes/dashboard";
     page: "/dashboard";
   };
-  "routes/protected.tsx": {
-    id: "routes/protected";
-    page: "/protected";
-  };
 };
 
 type RouteModules = {
@@ -85,5 +78,4 @@ type RouteModules = {
   "routes/forgot": typeof import("./app/routes/forgot.tsx");
   "routes/update": typeof import("./app/routes/update.tsx");
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
-  "routes/protected": typeof import("./app/routes/protected.tsx");
 };
