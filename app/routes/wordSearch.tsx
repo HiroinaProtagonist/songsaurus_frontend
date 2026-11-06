@@ -16,6 +16,7 @@ export default function WordSearch( {context}) {
     const [cloud_id, setCloudId] = useState<string>();
     const [cloud, setCloud] = useState<any>();
     const [word, setWord] = useState<any>();
+    const [editCloud, setEditCloud] = useState<Boolean>(false);
 
     useEffect(()=> {
         setCloud(() => clouds.filter(c => c.cloud_id === cloud_id)[0]);
@@ -29,16 +30,20 @@ export default function WordSearch( {context}) {
             <Stack direction="row" spacing={0} className="shrink mt-6 border-0 border-green-700">
                 <Box className="grow-0 shrink-0 ml-3 mr-3 mb-3 border-0 border-purple-700">
                     <CloudGenerator loaded={loaded} setLoaded={setLoaded}
-                                   clouds={clouds}
-                                   cloud={cloud} setCloud={setCloud}
-                                   cloud_id={cloud_id} setCloudId={setCloudId}
-                                   word={word} setWord={setWord}
-                                   explicit={explicit} setExplicit={setExplicit}
-                                   setResults={setResults} />
+                                    clouds={clouds}
+                                    cloud={cloud} setCloud={setCloud}
+                                    cloud_id={cloud_id} setCloudId={setCloudId}
+                                    word={word} setWord={setWord}
+                                    explicit={explicit} setExplicit={setExplicit}
+                                    setResults={setResults}
+                                    setEditCloud={setEditCloud}
+                    />
                 </Box>
                 <Box className="w-full grow shrink border-0 border-lime-400">
                     {cloud && cloud[0] != "new_cloud" &&
-                        <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}/>
+                        <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}
+                                      editCloud={editCloud} setEditCloud={setEditCloud}
+                        />
                     }
                 </Box>
             </Stack>

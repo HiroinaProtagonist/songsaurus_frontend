@@ -15,6 +15,7 @@ export default function Search( {context}) {
     const [results, setResults] = useState<any>();
     const [cloud_id, setCloudId] = useState<string>();
     const [cloud, setCloud] = useState<any>();
+    const [editCloud, setEditCloud] = useState<Boolean>(false);
 
     useEffect(()=> {
         setCloud(() => clouds.filter(c => c.cloud_id === cloud_id)[0]);
@@ -34,7 +35,9 @@ export default function Search( {context}) {
                                    setResults={setResults} />
                 </Box>
                 <Box className="w-full grow shrink border-0 border-lime-400">
-                    <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}/>
+                    <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}
+                                  editCloud={editCloud} setEditCloud={setEditCloud}
+                    />
                 </Box>
             </Stack>
 

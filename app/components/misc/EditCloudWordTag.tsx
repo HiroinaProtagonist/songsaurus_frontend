@@ -5,10 +5,12 @@ import {MdOutlineDeleteForever} from "react-icons/md";
 import {useRef, useState} from "react";
 import {FaCheck, FaMinus, FaMinusCircle} from "react-icons/fa";
 import axios from "axios";
-import {deleteCloudWord} from "~/db/supabase";
+import {deleteCloudWord, supabase} from "~/db/supabase";
+import type {Tracks} from "~/model/tracks";
 
-export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
+export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded, fromPage}) {
     // console.log(`Tag: ${cloud}; Word: ${word}`);
+    console.log(`from: ${JSON.stringify(fromPage)}; Loaded: ${loaded}; EditCloud: ${editCloud}`);
 
     const [cloudWord, setCloudWord] = useState<string>(word);
     const [error, setError] = useState<string>("");
@@ -32,7 +34,19 @@ export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
 
             <form>
                 <Paper className="border-0 border-pink-300 w-fit p-2 align-middle">
-                    {!editCloud && !loaded && <>{word}</>}
+                    {!editCloud && !loaded && fromPage == "/generator" &&
+                        <>
+                            <button onClick={e => {
+                                e.preventDefault();
+                                console.log(`Search for word: ${word}`);
+                                // getTracksForWord();
+                            }}>
+                                {word}
+                            </button>
+                        </>
+                    }
+
+                    {!editCloud && !loaded && fromPage == "/" && <>{word}</>}
 
                     {!editCloud && loaded && <Link to={"#" + word}>{word}</Link>}
 
@@ -67,7 +81,7 @@ export function EditCloudWordTag({word, cloud_id, word_id, editCloud, loaded}) {
                                 onClick={e => {
                                     e.preventDefault();
                                     console.log(`Clicked delete: ${cloudWord}`);
-                                    deleteCloudWord(cloud_id, word_id);
+                                    // deleteCloudWord(cloud_id, word_id);
                             }}>
                                 <FaMinusCircle />
                             </button>

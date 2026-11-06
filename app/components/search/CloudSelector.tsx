@@ -12,8 +12,6 @@ import type {Game} from "~/model/game";
 import type {Tracks} from "~/model/tracks";
 import {ResultToTracks} from "~/data/ItemToTrack";
 
-import type {Route} from "../../routes/+types/home";
-
 export function CloudSelector({setLoaded,
     clouds,
     cloud, setCloud,

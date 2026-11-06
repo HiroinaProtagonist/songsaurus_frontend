@@ -30,13 +30,14 @@ export function WordResults({results}) {
         return makeHeader;
     }
 
-    // console.log(`WordResults: ${JSON.stringify(results)}`);
-    // console.log(`WR: ${headerWords()}`);
-    // console.log(`Wordresults words: ${JSON.stringify(results.words[0].words)}`);
-    // console.log(`Rhymes: ${JSON.stringify(results.rhymes)}`);
+    console.log(`WordResults: ${JSON.stringify(results)}`);
+    console.log(`WR: ${headerWords()}`);
+    console.log(`Wordresults words: ${JSON.stringify(results.words[0].words)}`);
+    console.log(`Rhymes: ${JSON.stringify(results.rhymes)}`);
 
     const getAllRhymes = (word) => {
-        // console.log(`Rhymes: ${JSON.stringify(results.rhymes)}; Word: ${JSON.stringify(word)}`);
+        console.log(`Rhymes123: ${JSON.stringify(results.rhymes)}; Word: ${JSON.stringify(word)}`);
+        if (results.rhymes == undefined) { return undefined; }
 
         for (const rhymeGroup of results.rhymes) {
             if (word == rhymeGroup.search) { return rhymeGroup}
@@ -59,8 +60,12 @@ export function WordResults({results}) {
             wordObject["antonyms"] = word.antonyms;
             wordObject["stems"] = word.stems;
             wordObject["offensive"] = word.offensive;
-            wordObject["rhymes"] = rhymingGroups.rhymes;
-            wordObject["allRhymes"] = rhymingGroups.allRhymes;
+
+            if (rhymingGroups != undefined) {
+                wordObject["rhymes"] = rhymingGroups.rhymes != undefined ? rhymingGroups.rhymes : null;
+                wordObject["allRhymes"] = rhymingGroups.allRhymes != undefined ? rhymingGroups.allRhymes : null;
+            }
+
             wordsObject[wordPos] = wordObject;
         }
 
@@ -96,7 +101,8 @@ export function WordResults({results}) {
                             }
 
                             {activeWordPos == `${w.metaId}_${w.partOfSpeech}` &&
-                                <button className="px-1 w-fit font-bold border-x-3 border-t-3 border-red-500 border-b border-b-black"
+                                <button className="px-1 w-fit font-bold border-x-3
+                                                   border-t-3 border-red-500 border-b border-b-black"
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setActiveWordPos(`${w.metaId}_${w.partOfSpeech}`);
@@ -112,26 +118,6 @@ export function WordResults({results}) {
                     )}
 
                     {/*TODO implement checkbox rather than radio button behavior for search result words*/}
-                    {/*<span className="mx-2">*/}
-                    {/*    {activeWordPos != "All_" &&*/}
-                    {/*        <button className="px-1 border w-fit"*/}
-                    {/*                onClick={(e) => {*/}
-                    {/*                    e.preventDefault();*/}
-                    {/*                    setActiveWordPos("All_");*/}
-                    {/*                }}*/}
-                    {/*        >All</button>*/}
-                    {/*    }*/}
-
-                    {/*    {activeWordPos == "All_" &&*/}
-                    {/*        <button className="px-1 w-fit font-bold border-b border-b-black border-x-3 border-t-3 border-red-500"*/}
-                    {/*                onClick={(e) => {*/}
-                    {/*                    e.preventDefault();*/}
-                    {/*                    setActiveWordPos("All_");*/}
-                    {/*                }}*/}
-                    {/*        >All</button>*/}
-                    {/*    }*/}
-
-                    {/*</span>*/}
                 </span>
             </div>
 
@@ -173,12 +159,6 @@ export function WordResults({results}) {
                                   allRhymes={words[0][activeWordPos].allRhymes}
                                   key={`rrow_${words[0][activeWordPos].metaUuid}`}/>
                 }
-
-                {/*{(highlight == "All" && activeWordPos.length > 0) &&*/}
-                {/*    <RhymeList rhymes={words[0][activeWordPos].rhymes}*/}
-                {/*                  allRhymes={words[0][activeWordPos].allRhymes}*/}
-                {/*                  key={`rrow_${words[0][activeWordPos].metaUuid}`}/>*/}
-                {/*}*/}
             </>
         </Stack>
     );
