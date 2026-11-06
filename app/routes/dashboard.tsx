@@ -1,19 +1,10 @@
-import {TitleBar} from "~/components/page/TitleBar";
-import {Box, Stack} from "@mui/material";
-import {FooterBar} from "~/components/page/FooterBar";
-import {DashboardComponent} from "~/components/login_old/DashboardComponent";
-import {useAuth} from "~/context/AuthContext";
 import {Navigate, useLocation} from "react-router";
+import {useSession} from "~/context/SessionContext";
 
 export default function Dashboard() {
-    const { user, loading } = useAuth();
-    const location = useLocation();
+    const { session } = useSession();
 
-    if (loading) {
-        return <div>Loading...</div>
-    }
-
-    if (!user) {
+    if (!session) {
         return (
             <Navigate
                 to="/login"
@@ -26,6 +17,8 @@ export default function Dashboard() {
     return (
         <>
             Dashboard
+
+            {session && <p>Logged in.</p>}
         </>
     );
 }

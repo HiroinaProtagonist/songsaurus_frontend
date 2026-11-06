@@ -13,7 +13,9 @@ import {FooterBar} from "~/components/page/FooterBar";
 import {Box, Stack} from "@mui/material";
 import {TitleBar} from "~/components/page/TitleBar";
 import {getDBClouds, supabase} from "~/db/supabase";
-import React, {createContext} from "react";
+import React, {createContext, Suspense} from "react";
+import {SessionProvider} from "~/context/SessionProvider";
+import LoadingPage from "~/components/LoadingPage";
 
 export async function loader({ params }: Route.LoaderArgs) {
     //TODO add feature flag to switch between mock and live data
@@ -37,6 +39,11 @@ export function meta({}: Route.MetaArgs) {
         {name: "description", content: "Search Spotify by word association"},
     ];
 }
+
+// export function HydrateFallback() {
+//     //TODO replace with loading animation/splash element
+//     return <LoadingPage />;
+// }
 
 export const links: Route.LinksFunction = () => [
     {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -86,18 +93,22 @@ export default function App({ loaderData, }:Route.ComponentProps) {
     }
 
     return (
-        <>
-            <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
-                <Stack direction="column" className="p-2 grow border-0 border-orange-400">
-                    <TitleBar context={titleContext}/>
-                    <div className="border-b-0 border-black">
-                        <Outlet context={{session, clouds}}/>
-                        {/*<Search clouds={clouds}/>*/}
-                    </div>
-                </Stack>
-                <FooterBar/>
-            </Box>
-        </>
+        // <>
+            <SessionProvider>
+                <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
+                    <Stack direction="column" className="p-2 grow border-0 border-orange-400">
+                        <TitleBar context={titleContext}/>
+                        <div className="border-b-0 border-black">
+                            <Suspense fallback={ <h1>Loading</h1> }>
+                            <Outlet context={{session, clouds}}/>
+                            </Suspense>
+                            {/*<Search clouds={clouds}/>*/}
+                        </div>
+                    </Stack>
+                    <FooterBar/>
+                </Box>
+            </SessionProvider>
+        // </>
     )
 }
 

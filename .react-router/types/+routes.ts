@@ -47,21 +47,25 @@ type RouteFiles = {
     id: "routes/wordSearch";
     page: "/generator";
   };
-  "routes/login.tsx": {
-    id: "routes/login";
+  "routes/login/login.tsx": {
+    id: "routes/login/login";
     page: "/login";
   };
-  "routes/signup.tsx": {
-    id: "routes/signup";
+  "routes/login/signup.tsx": {
+    id: "routes/login/signup";
     page: "/signup";
   };
-  "routes/forgot.tsx": {
-    id: "routes/forgot";
+  "routes/login/forgot.tsx": {
+    id: "routes/login/forgot";
     page: "/forgot-password";
   };
-  "routes/update.tsx": {
-    id: "routes/update";
+  "routes/login/update.tsx": {
+    id: "routes/login/update";
     page: "/update-password";
+  };
+  "routes/layouts/protected.tsx": {
+    id: "routes/layouts/protected";
+    page: "/dashboard";
   };
   "routes/dashboard.tsx": {
     id: "routes/dashboard";
@@ -73,9 +77,10 @@ type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "routes/search": typeof import("./app/routes/search.tsx");
   "routes/wordSearch": typeof import("./app/routes/wordSearch.tsx");
-  "routes/login": typeof import("./app/routes/login.tsx");
-  "routes/signup": typeof import("./app/routes/signup.tsx");
-  "routes/forgot": typeof import("./app/routes/forgot.tsx");
-  "routes/update": typeof import("./app/routes/update.tsx");
+  "routes/login/login": typeof import("./app/routes/login/login.tsx");
+  "routes/login/signup": typeof import("./app/routes/login/signup.tsx");
+  "routes/login/forgot": typeof import("./app/routes/login/forgot.tsx");
+  "routes/login/update": typeof import("./app/routes/login/update.tsx");
+  "routes/layouts/protected": typeof import("./app/routes/layouts/protected.tsx");
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
 };

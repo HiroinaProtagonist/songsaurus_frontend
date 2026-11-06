@@ -2,12 +2,20 @@ import { useState } from "react";
 import {Card, CardContent, CardHeader} from "@mui/material";
 import {safeNextPath} from "~/utils/safe-next-path";
 import {supabase} from "~/db/supabase";
+import {useSession} from "~/context/SessionContext";
+import {Navigate} from "react-router";
 
 export default function Login({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
+    const { session } = useSession();
+    // const [status, setStatus] = useState("");
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    if (session) { return <Navigate to="/" />; }
 
     async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -20,13 +28,12 @@ export default function Login({ className, ...props }: React.ComponentPropsWitho
                 password,
             });
 
-            if (error) { throw error; }
-            // Update this route to redirect to an authenticated route. The user already has an active session.
             const next = new URLSearchParams(window.location.search).get('next');
             location.href = safeNextPath(next, '/dashboard');
 
-        } catch (error: unknown) {
-            setError(error instanceof Error ? error.message : 'An error occurred')
+        } catch (error) {
+            // setError(error instanceof Error ? error.message : 'An error occurred');
+            console.log(error.message);
         } finally {
             setIsLoading(false);
         }
@@ -36,10 +43,10 @@ export default function Login({ className, ...props }: React.ComponentPropsWitho
         // <main style={{padding: '2rem'}}>
         <div className="flex flex-row justify-center mt-16 w-full" {...props}>
             <Card>
-                <CardHeader>
+                <div>
                     <div className="font-medium text-lg tracking-normal">Sign in</div>
                     <div>Enter your email below to sign in to your account</div>
-                </CardHeader>
+                </div>
                 <CardContent>
                     <form onSubmit={handleLogin}>
                         <div className="flex flex-col gap-6">

@@ -1,51 +1,57 @@
     import { useState } from 'react';
     import {Button, Card, CardContent, CardHeader} from "@mui/material";
     import {supabase} from "~/db/supabase";
+    import {useSession} from "~/context/SessionContext";
 
     export default function Signup({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
-        const [email, setEmail] = useState('')
-        const [password, setPassword] = useState('')
-        const [repeatPassword, setRepeatPassword] = useState('')
-        const [error, setError] = useState<string | null>(null)
-        const [isLoading, setIsLoading] = useState(false)
-        const [success, setSuccess] = useState(false)
+        const { session } = useSession();
+        const [isLoading, setIsLoading] = useState(false);
 
-        const handleSignUp = async (e: React.FormEvent) => {
-            e.preventDefault()
-            setError(null)
+        const [email, setEmail] = useState('');
+        const [password, setPassword] = useState('');
+        const [repeatPassword, setRepeatPassword] = useState('');
+
+        const [error, setError] = useState<string | null>(null);
+
+        // const [loggedIn, setSuccess] = useState(false);
+
+        const handleSignUp = async (e) => {
+            e.preventDefault();
+            setError(null);
+            setIsLoading(true);
 
             if (password !== repeatPassword) {
-                setError('Passwords do not match')
-                return
+                setError('Passwords do not match');
+                // return;
             }
-            setIsLoading(true)
 
             try {
                 const { error } = await supabase.auth.signUp({
                     email,
                     password,
-                })
-                if (error) throw error
-                setSuccess(true)
-            } catch (error: unknown) {
-                setError(error instanceof Error ? error.message : 'An error occurred')
+                });
+
+            } catch (error) {
+                // setError(error instanceof Error ? error.message : 'An error occurred');
+                console.log(error.message);
+
             } finally {
-                setIsLoading(false)
+                setIsLoading(false);
             }
         }
 
         return (
             <div className="flex flex-row justify-center mt-16 w-full" {...props}>
-                {success ? (
+                {!isLoading && session ? (
                     <Card>
-                        <CardHeader>
+                        <div>
                             {/*<CardHeader className="font-medium text-lg tracking-normal">*/}
                             {/*    Thank you for signing up!*/}
                             {/*</CardHeader>*/}
                             <div className="pt-4 px-4 font-medium text-center text-lg tracking-normal">
                                 Check your email to confirm
                             </div>
-                        </CardHeader>
+                        </div>
                         <CardContent>
                             <p className="text-sm text-muted-foreground">
                                 You've successfully signed up. Please check your email to confirm your account
@@ -55,10 +61,10 @@
                     </Card>
                 ) : (
                     <Card>
-                        <CardHeader>
+                        <div>
                             <div className="font-medium text-lg tracking-normal">Sign up</div>
                             <div>Create a new account</div>
-                        </CardHeader>
+                        </div>
                         <CardContent>
                             <form onSubmit={handleSignUp}>
                                 <div className="flex flex-col gap-6">
