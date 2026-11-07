@@ -28,13 +28,15 @@ export function CloudDisplay({cloud_id, cloud, clouds, loaded, editCloud, setEdi
     return (
         <>
             {cloud &&
-                <div className="pl-4 pr-2 pb-1 mt-0.5 min-w-1/4 min-h-1/4">
-                <div className="flex flex-row justify-start">
+                <div className="
+                        flex flex-row justify-start
+                        w-full border-0 border-emerald-100 mt-0.5 min-w-full
+                        ">
                     <Box>
                         {/*{!loaded && <div>Click word to search for related words.</div>}*/}
                         {/*{loaded && <div>Click word to navigate to related results.</div>}*/}
 
-                        <Grid container size="auto" spacing={1} className="border-1 border-black">
+                        <Grid container size="auto" spacing={1} className="grow w-full border-1 border-black">
                             {cloud.words.map((w, i) =>
                                 <EditCloudWordTag key={w.word_id} cloud_id={cloud_id} word={w.name} word_id={w.word_id}
                                                   editCloud={editCloud} fromPage={location.pathname.toString()}
@@ -83,7 +85,7 @@ export function CloudDisplay({cloud_id, cloud, clouds, loaded, editCloud, setEdi
                         </button>
                     </div>}
                 </div>
-            </div>}
+            }
         </>
     )
 }

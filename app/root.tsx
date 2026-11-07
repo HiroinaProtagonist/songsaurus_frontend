@@ -97,7 +97,7 @@ export default function App({ loaderData, }:Route.ComponentProps) {
             <SessionProvider>
                 <Box sx={{flexGrow: 1}} className="flex flex-col justify-between border-0 border-pink-600">
                     <Stack direction="column" className="p-2 grow border-0 border-orange-400">
-                        <TitleBar context={titleContext}/>
+                        <TitleBar/>
                         <div className="border-b-0 border-black">
                             <Suspense fallback={ <h1>Loading</h1> }>
                             <Outlet context={{session, clouds}}/>

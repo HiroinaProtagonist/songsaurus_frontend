@@ -39,8 +39,7 @@ export function TitleBar() {
 
                     {session != null &&
                         <>
-                            <Link
-                            to="/"
+                            <Link to="/"
                             onClick={(e) =>{
                                 e.preventDefault();
 
@@ -52,9 +51,8 @@ export function TitleBar() {
                             <span> <Link to="/dashboard"> Dashboard</Link></span>
                         </>
                     }
-
-
                 </span>
+
                 <HideableMenuBar links={links}/>
             </div>
         </>

@@ -59,12 +59,15 @@ export function CloudGenerator({
     };
 
     return (
-        <div className="p-3 border-2 border-purple-600">
+        <div className="w-fit pr-2 pb-1 mt-0 border-3 border-purple-400">
             <form>
                 <div className="border-0">
-                    <label htmlFor="cloudSelect" className="pl-4">Cloud:</label>
+                    <label htmlFor="cloudSelect" className="pl-2">Cloud:</label>
                     <select name="cloudSelect" id="cloudSelect"
-                            className="ml-2 px-1 border border-black"
+                            className="ml-2 pl-2 pr-1
+                                       border border-black
+                                       max-w-60 whitespace-normal text-ellipsis
+                                      "
                             defaultValue='default'
                             onChange={e => {
                                 setCloudId(e.target.value);
@@ -88,16 +91,17 @@ export function CloudGenerator({
                     {cloud_id && cloud_id == "new_cloud" &&
                         <>
                             <div className="mt-0">
-                                <label htmlFor="new_cloud_input" className="pl-4">Name: </label>
+                                <label htmlFor="new_cloud_input" className="pl-2">Name: </label>
                                 <input type="text" id="new_cloud_name"
-                                       className="pl-1 ml-1 border border-black w-34.75"
+                                       className="grow pl-1 ml-1 border border-black w-auto"
                                        onChange={(e) => {
                                            setNewCloudName(e.target.value);
                                        }}
                                 />
                             </div>
-                            <div>
-                                <button className="px-1 mt-1 ml-31.75 border border-black w-fit"
+                            <div className="flex flex-row justify-between w-full">
+                                <span>&nbsp;</span>
+                                <button className="ml-2 mt-2 px-1 border border-black w-fit"
                                         onClick={e => {
                                             e.preventDefault();
                                             setCloud();
@@ -109,9 +113,9 @@ export function CloudGenerator({
                 </div>
 
                 <div className="border-0 border-purple-200">
-                    <label htmlFor="word" className="pl-4">Word: </label>
+                    <label htmlFor="word" className="pl-4">Search: </label>
                     <input type="text" id="word_search" name="word_search"
-                           className="w-auto pl-1 mt-4 ml-2 mb-1 border border-black max-w-47"
+                           className="grow w-auto pl-1 mt-4 ml-2 mb-1 border border-black"
                            onChange={(e) => {
                                e.preventDefault();
                                setWord(e.target.value);
@@ -119,7 +123,9 @@ export function CloudGenerator({
                     />
                 </div>
 
-                <button className="px-1 mt-2 ml-31.5 border border-black w-fit"
+                <div className="flex flex-row justify-between w-full">
+                    <span>&nbsp;</span>
+                    <button className="ml-2 mt-2 px-1 border border-black w-fit"
                         onClick={e => {
                             e.preventDefault();
 
@@ -128,7 +134,8 @@ export function CloudGenerator({
                             getWords(explicit, LIMIT, word);
 
                         }}>Get words
-                </button>
+                    </button>
+                </div>
             </form>
         </div>
     );

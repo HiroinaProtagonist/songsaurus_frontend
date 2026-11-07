@@ -29,7 +29,11 @@ export default function WordSearch( {context}) {
 
     return (
         <Grid container spacing={1} className="border-0 border-pink-700">
-            <Stack direction="row" spacing={0} className="shrink mt-6 border-0 border-green-700">
+            <Stack
+                direction={{ xs: 'column', sm: 'row', md: 'row', lg: 'row', xl: 'row' }}
+                spacing={0}
+                className="shrink mt-6 border-0 border-green-700"
+            >
                 <Box className="grow-0 shrink-0 ml-3 mr-3 mb-3 border-0 border-purple-700">
                     <CloudGenerator loaded={loaded} setLoaded={setLoaded}
                                     clouds={clouds}
