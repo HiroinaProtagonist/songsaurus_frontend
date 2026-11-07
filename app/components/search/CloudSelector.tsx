@@ -71,6 +71,7 @@ export function CloudSelector({setLoaded,
                             console.log(`Value: ${e.target.value}`)
                             setCloudId(e.target.value);
                             setLoaded(false);
+                            setResults(null);
                         }}
                     >
                         <option value='default' disabled={true} key='0'>Choose cloud</option>

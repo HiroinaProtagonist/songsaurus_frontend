@@ -4,12 +4,13 @@ import {Box, Grid, Stack} from "@mui/material";
 import {Results} from "~/components/misc/Results";
 import {CloudDisplay} from "~/components/common/CloudDisplay";
 import {useOutletContext} from "react-router";
+import {useSession} from "~/context/SessionContext";
 
 export default function Search( {context}) {
+    const {session}:any = useSession(); //useOutletContext();
     const {clouds}:any = useOutletContext();
     // console.log(`WS: ${JSON.stringify(clouds)}`);
 
-    const {session}:any = useOutletContext();
     const [loaded, setLoaded] = useState<Boolean>(false);
     const[explicit, setExplicit] = useState<boolean>(false);
     const [results, setResults] = useState<any>();
@@ -35,8 +36,10 @@ export default function Search( {context}) {
                                    setResults={setResults} />
                 </Box>
                 <Box className="w-full grow shrink border-0 border-lime-400">
-                    <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}
-                                  editCloud={editCloud} setEditCloud={setEditCloud}
+                    <CloudDisplay loaded={loaded} setLoaded={setLoaded}
+                        cloud_id={cloud_id} cloud={cloud} clouds={clouds}
+                        editCloud={editCloud} setEditCloud={setEditCloud}
+                        setResults={setResults}
                     />
                 </Box>
             </Stack>

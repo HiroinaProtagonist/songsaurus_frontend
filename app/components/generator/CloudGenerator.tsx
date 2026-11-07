@@ -22,8 +22,6 @@ export function CloudGenerator({
     setEditCloud
 }: any) {
 
-    const LIMIT: string = "10";
-
     const explicitCheckRef = useRef(null);
     const typesCheckRef = useRef(null);
 

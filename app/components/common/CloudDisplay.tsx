@@ -5,7 +5,7 @@ import {EditCloudWordTag} from "~/components/misc/EditCloudWordTag";
 import {deleteCloud, deleteCloudWord} from "~/db/supabase";
 import {useLocation} from "react-router";
 
-export function CloudDisplay({cloud_id, cloud, clouds, loaded, editCloud, setEditCloud}) {
+export function CloudDisplay({cloud_id, cloud, clouds, loaded, editCloud, setEditCloud, setResults, setLoaded}) {
     const location = useLocation();
 
     // console.log(`Clouds: ${{clouds}[0]}; CloudDisplay: ${cloud_id}; EditCloud: ${editCloud}`);
@@ -36,9 +36,10 @@ export function CloudDisplay({cloud_id, cloud, clouds, loaded, editCloud, setEdi
 
                         <Grid container size="auto" spacing={1} className="border-1 border-black">
                             {cloud.words.map((w, i) =>
-                                <EditCloudWordTag cloud_id={cloud_id} word={w.name} word_id={w.word_id} key={w.word_id}
+                                <EditCloudWordTag key={w.word_id} cloud_id={cloud_id} word={w.name} word_id={w.word_id}
                                                   editCloud={editCloud} fromPage={location.pathname.toString()}
                                                   loaded={loaded}
+                                                  setResults={setResults} setLoaded={setLoaded}
                                 />
                             )}
 

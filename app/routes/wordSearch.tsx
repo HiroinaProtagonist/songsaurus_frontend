@@ -6,10 +6,12 @@ import {CloudGenerator} from "~/components/generator/CloudGenerator";
 import type {Route} from "../../.react-router/types/app/routes/+types/wordSearch";
 import {getDBClouds} from "~/db/supabase";
 import {useOutletContext} from "react-router";
+import {useSession} from "~/context/SessionContext";
 
 export default function WordSearch( {context}) {
+    const {session}:any = useSession(); //useOutletContext();
     const {clouds}:any = useOutletContext();
-    const {session}:any = useOutletContext();
+
     const [loaded, setLoaded] = useState<Boolean>(false);
     const[explicit, setExplicit] = useState<boolean>(false);
     const [results, setResults] = useState<any>();
@@ -43,6 +45,7 @@ export default function WordSearch( {context}) {
                     {cloud && cloud[0] != "new_cloud" &&
                         <CloudDisplay loaded={loaded} cloud_id={cloud_id} cloud={cloud} clouds={clouds}
                                       editCloud={editCloud} setEditCloud={setEditCloud}
+                                      setResults={setResults} setLoaded={setLoaded}
                         />
                     }
                 </Box>
