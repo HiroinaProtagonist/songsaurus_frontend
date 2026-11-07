@@ -20,20 +20,21 @@ export function WordResults({results}) {
     const ANTONYMS = "Antonyms";
     const RHYMES = "Rhymes";
     const ALL = "All";
+    const headingWords = [SYNONYMS,ANTONYMS];   //,RHYMES];
 
     const headerWords = () => {
         const makeHeader = [];
-        for (const r of ["Synonyms","Antonyms","Rhymes"]) {     //, Todo reinstate all option at some point "All"]) {
+        for (const r of headingWords) {     //, Todo reinstate all option at some point "All"]) {
             makeHeader.push(r);
         }
 
         return makeHeader;
     }
 
-    console.log(`WordResults: ${JSON.stringify(results)}`);
-    console.log(`WR: ${headerWords()}`);
+    // console.log(`WordResults: ${JSON.stringify(results)}`);
+    // console.log(`WR: ${headerWords()}`);
     console.log(`Wordresults words: ${JSON.stringify(results.words[0].words)}`);
-    console.log(`Rhymes: ${JSON.stringify(results.rhymes)}`);
+    // console.log(`Rhymes: ${JSON.stringify(results.rhymes)}`);
 
     const getAllRhymes = (word) => {
         console.log(`Rhymes123: ${JSON.stringify(results.rhymes)}; Word: ${JSON.stringify(word)}`);
@@ -52,14 +53,14 @@ export function WordResults({results}) {
             let rhymingGroups = getAllRhymes(word.metaId);
 
             let wordObject = {};
-            wordObject["metaId"] = word.metaId;
-            wordObject["metaUuid"] = word.metaUuid;
-            wordObject["partOfSpeech"] = word.partOfSpeech;
-            wordObject["shortDefs"] = word.shortDef;
-            wordObject["synonyms"] = word.synonyms;
-            wordObject["antonyms"] = word.antonyms;
-            wordObject["stems"] = word.stems;
-            wordObject["offensive"] = word.offensive;
+            wordObject["metaId"] = word.metaId != undefined ? word.metaId : null;
+            wordObject["metaUuid"] = word.metaUuid != undefined ? word.metaUuid : null;
+            wordObject["partOfSpeech"] = word.partOfSpeech != undefined ? word.partOfSpeech : null;
+            wordObject["shortDefs"] = word.shortDef != undefined ? word.shortDef : null;
+            wordObject["synonyms"] = word.synonyms != undefined ? word.synonyms : null;
+            wordObject["antonyms"] = word.antonyms != undefined ? word.antonyms : null;
+            wordObject["stems"] = word.stems != undefined ? word.stems : null;
+            wordObject["offensive"] = word.offensive != undefined ? word.offensive : null;
 
             if (rhymingGroups != undefined) {
                 wordObject["rhymes"] = rhymingGroups.rhymes != undefined ? rhymingGroups.rhymes : null;

@@ -1,13 +1,7 @@
-import {
-    type CloudRecord,
-    type ElementType,
-    type reactWordCloud,
-    stringToWordCloudArray,
-    stringToStringArray
-} from "~/data/cloud_data";
 import {useRef, useState} from "react";
-import {combi_mock, sample, words} from "~/data/sample_words";
+import {combi_mock} from "~/data/sample_words";
 import axios from "axios";
+import {LIMIT} from "~/utils/constants";
 
 // import type {Words} from "~/model/words";
 
@@ -32,13 +26,6 @@ export function CloudGenerator({
     const [newCloudName, setNewCloudName] = useState<string>("");
 
     const [error, setError] = useState<string>();
-
-    function getSampleWords(explicit: boolean, word: string[]) {
-        // console.log(`Load sample for word: ${word}, ${explicit ? "not" : ""} including explicit words.`)
-        setResults(sample());
-        setLoaded(true);
-        console.log(`Words requested: ${JSON.stringify(sample()[0])}`)
-    }
 
     //Gets mock that reflects the object structure coming from upstream
     function getMockWords(explicit: boolean, word: string[]) {
@@ -136,9 +123,9 @@ export function CloudGenerator({
                         onClick={e => {
                             e.preventDefault();
 
-                            getMockWords(explicit, word);
+                            // getMockWords(explicit, word);
                             // getSampleWords(explicit, word);
-                            // getWords(explicit, LIMIT, word);
+                            getWords(explicit, LIMIT, word);
 
                         }}>Get words
                 </button>

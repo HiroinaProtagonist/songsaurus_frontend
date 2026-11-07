@@ -1,16 +1,7 @@
-import {
-    type CloudRecord,
-    type ElementType,
-    type reactWordCloud, stringToStringArray,
-    stringToWordCloudArray
-} from "~/data/cloud_data";
-import {MdDelete, MdEdit} from "react-icons/md";
 import {useRef, useState} from "react";
 import {sample} from "~/data/sample_tracks";
 import axios from "axios";
-import type {Game} from "~/model/game";
 import type {Tracks} from "~/model/tracks";
-import {ResultToTracks} from "~/data/ItemToTrack";
 
 export function CloudSelector({setLoaded,
     clouds,
@@ -59,7 +50,7 @@ export function CloudSelector({setLoaded,
     };
 
     return (
-        <div className="pr-2 pb-1 mt-0 border-0 border-purple-600">
+        <div className="pr-2 pb-1 mt-0 border-2 border-purple-400">
             <form>
                 <span className="border-0">
                     <label htmlFor="cloudSelect" className="pl-2">Cloud:</label>
@@ -97,9 +88,9 @@ export function CloudSelector({setLoaded,
                     onClick={e => {
                         e.preventDefault();
                         console.log(`Cloud for tracks: ${cloud === undefined}`);
-                        getSampleTracks(explicit, cloud);
+                        // getSampleTracks(explicit, cloud);
 
-                        // getTracks(explicit, LIMIT, cloud);
+                        getTracks(explicit, LIMIT, cloud);
 
                         // setLoaded(true);
                 }}>Get songs</button>
